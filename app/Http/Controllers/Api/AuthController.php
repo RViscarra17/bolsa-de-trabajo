@@ -49,8 +49,11 @@ class AuthController extends Controller
         $user = Usuario::where('correo', $request->correo)->first();
         $authToken = $user->createToken('auth-token')->plainTextToken;
 
-        return response()->json([
-            'access_token' => $authToken,
-        ]);
+        return response()->json(['access_token' => $authToken,]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
     }
 }

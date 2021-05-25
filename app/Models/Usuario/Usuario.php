@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Usuario;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Usuario extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasRoles, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +26,7 @@ class Usuario extends Authenticatable
         'apellidos',
         'correo',
         'password',
+        'id_tipo_usuario'
     ];
 
     /**
@@ -42,4 +47,23 @@ class Usuario extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $table = 'usuario';
+
+    public function tipo(): BelongsTo
+    {
+        return $this->belongsTo(TipoUsuario::class, 'id_tipo_usuario');
+    }
+
+    public function telefonos(): HasMany
+    {
+        return $this->hasMany(Telefono::class, 'id_usuario');
+    }
+
+    public function redes(): BelongsToMany
+    {
+        return $this->belongsToMany(RedSocial::class, 'red_usuario', 'id_usuario', 'id_red')
+            ->withPivot('nombre_usuario', 'enlace_red')
+            ->as('detalle');
+    }
 }

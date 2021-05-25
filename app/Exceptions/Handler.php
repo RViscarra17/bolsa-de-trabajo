@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -37,5 +38,21 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    /**
+     * Mensaje personalizado al tratar de consultar un registro que no existe.
+     *
+     * @return array
+     */
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ModelNotFoundException) {
+            $model = app($exception->getModel());
+            return \response()->json([
+                'message' => method_exists($model, 'sinResultados') ? $model->sinResultados() : 'No se encontró el registro',
+            ], 404);
+        }
+
+        return parent::render($request, $exception);
     }
 }

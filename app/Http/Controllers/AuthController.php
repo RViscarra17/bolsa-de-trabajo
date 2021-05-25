@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario;
+use App\Models\Usuario\Usuario;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -13,8 +13,8 @@ class AuthController extends Controller
         $request->validate([
             'nombres' => 'required|string|regex:/^[A-zÀ-ú\s]+$/',
             'apellidos' => 'required|string|regex:/^[A-zÀ-ú\s]+$/',
-            'correo' => 'required|email|unique:usuarios',
-            'password' => 'required|confirmed|min:8'
+            'correo' => 'required|email|unique:usuario,correo',
+            'password' => 'required|min:8|confirmed'
         ]);
 
         $usuario = Usuario::create([

@@ -14,7 +14,7 @@ class CreateRedUsuarioTable extends Migration
     public function up()
     {
         Schema::create('red_usuario', function (Blueprint $table) {
-            $table->primary(['', '']);
+            $table->primary(['id_red', 'id_usuario']);
             $table->unsignedBigInteger('id_red');
             $table->unsignedBigInteger('id_usuario');
             $table->string('nombre_usuario', 50);

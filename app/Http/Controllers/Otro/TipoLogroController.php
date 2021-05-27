@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Perfil;
+namespace App\Http\Controllers\Otro;
 
-use App\Models\Perfil\TipoLogro;
+use App\Models\Otro\TipoLogro;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Perfil\TipoLogroRequest;
+use App\Http\Requests\Otro\TipoLogroRequest;
 
 class TipoLogroController extends Controller
 {

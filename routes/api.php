@@ -12,13 +12,17 @@ use App\Http\Controllers\Usuario\TelefonoController;
 use App\Http\Controllers\Usuario\RedUsuarioController;
 use App\Http\Controllers\Oferta\SectorController;
 use App\Http\Controllers\Oferta\CategoriaPuestoController;
-use App\Http\Controllers\Perfil\TipoLogroController;
+use App\Http\Controllers\Otro\TipoLogroController;
+use App\Http\Controllers\Otro\LogroController;
 use App\Http\Controllers\Perfil\TipoCertificacionController;
 use App\Http\Controllers\Perfil\NivelAcademicoController;
 use App\Http\Controllers\Perfil\CategoriaTituloController;
 use App\Http\Controllers\Perfil\CategoriaHabilidadController;
 use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -230,3 +234,9 @@ Route::get('/redes-usuario/{usuario}', [RedUsuarioController::class, 'show'])->n
 Route::put('/redes-usuario/{usuario}', [RedUsuarioController::class, 'update'])->name('redes-usuario.update');
 
 Route::delete('/redes-usuario/{usuario}/{red}', [RedUsuarioController::class, 'destroy'])->name('redes-usuario.destroy');
+//Logros
+Route::get('/logros',[LogroController::class,'index'])->name('logros.index');
+Route::post('/logros',[LogroController::class,'store'])->name('logros.store');
+Route::get('/logros/{logro}',[LogroController::class,'show'])->name('logros.show');
+Route::put('/logros/{logro}',[LogroController::class,'update'])->name('logros.update');
+Route::delete('/logros/{logro}',[LogroController::class,'delete'])->name('logros.delete');

@@ -20,8 +20,9 @@ use App\Http\Controllers\Perfil\CategoriaTituloController;
 use App\Http\Controllers\Perfil\CategoriaHabilidadController;
 use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
-
-
+use App\Http\Controllers\Otro\RecomendacionController;
+use App\Http\Controllers\Otro\PublicacionController;
+use App\Http\Controllers\Otro\EventoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -240,3 +241,24 @@ Route::post('/logros',[LogroController::class,'store'])->name('logros.store');
 Route::get('/logros/{logro}',[LogroController::class,'show'])->name('logros.show');
 Route::put('/logros/{logro}',[LogroController::class,'update'])->name('logros.update');
 Route::delete('/logros/{logro}',[LogroController::class,'delete'])->name('logros.delete');
+//Recomendaciones
+Route::get('/recomendaciones',[RecomendacionController::class,'index'])->name('recomendaciones.index');
+Route::post('/recomendaciones',[RecomendacionController::class,'store'])->name('recomendaciones.store');
+Route::get('/recomendaciones/{recomendacion}',[RecomendacionController::class,'show'])->name('recomendaciones.show');
+Route::put('/recomendaciones/{recomendacion}',[RecomendacionController::class,'update'])->name('recomendaciones.update');
+Route::delete('/recomendaciones/{recomendacion}',[RecomendacionController::class,'delete'])->name('recomendaciones.delete');
+
+//Publicaciones
+Route::get('/publicaciones',[PublicacionController::class,'index'])->name('publicaciones.index');
+Route::post('/publicaciones',[PublicacionController::class,'store'])->name('publicaciones.store');
+Route::get('/publicaciones/{publicacion}',[PublicacionController::class,'show'])->name('publicaciones.show');
+Route::put('/publicaciones/{publicacion}',[PublicacionController::class,'update'])->name('publicaciones.update');
+Route::delete('/publicaciones/{publicacion}',[PublicacionController::class,'delete'])->name('publicaciones.delete');
+ 
+//Eventos
+//Publicaciones
+Route::get('/eventos',[EventoController::class,'index'])->name('eventos.index');
+Route::post('/eventos',[EventoController::class,'store'])->name('eventos.store');
+Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show');
+Route::put('/eventos/{evento}',[EventoController::class,'update'])->name('eventos.update');
+Route::delete('/eventos/{evento}',[EventoController::class,'delete'])->name('eventos.delete');

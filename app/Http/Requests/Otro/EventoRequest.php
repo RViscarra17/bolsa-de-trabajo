@@ -4,7 +4,7 @@ namespace App\Http\Requests\Otro;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RecomendacionRequest extends FormRequest
+class EventoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,10 @@ class RecomendacionRequest extends FormRequest
         return [
             //
             'id_perfil' => 'required|exists:perfil,id',
-            'nombre_rec' => 'required|string|max:100',
-            'telefono_rec' => 'required|string|max:8',
-            'correo_rec'=>'required|regex:/^[0-9]+$/|max:255',
+            'lugar' => 'required|string|max:50',
+            'pais' => 'required|string|max:25',
+            'anfitrion' => 'required|string|max:50',
+            //'fecha_evento' => 'required',
         ];
     }
 }

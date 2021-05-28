@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecomendacionsTable extends Migration
+class CreateEventosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateRecomendacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recomendacion', function (Blueprint $table) {
+        Schema::create('evento', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_rec',100);
-            $table->string('telefono_rec',8);
-            $table->string('correo_rec',255);
+            $table->string('lugar',50);
+            $table->string('pais',25);
+            $table->string('anfitrion',50);
+            $table->date('fecha_evento');
             $table->unsignedBigInteger('id_perfil');
             $table->timestamps();
-
             $table->foreign('id_perfil')->references('id')->on('perfil')->onDelete('cascade');
         });
     }
@@ -32,6 +32,6 @@ class CreateRecomendacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recomendacion');
+        Schema::dropIfExists('evento');
     }
 }

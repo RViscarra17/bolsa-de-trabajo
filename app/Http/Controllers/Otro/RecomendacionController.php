@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Otro;
 
-use App\Models\Recomendacion;
-use Illuminate\Http\Request;
+
+use Illuminate\Http\Request\Otro\RecomendacionRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Otro\Recomendacion;
 
 class RecomendacionController extends Controller
 {
@@ -16,6 +17,8 @@ class RecomendacionController extends Controller
     public function index()
     {
         //
+        $recomendaciones = Recomendacion::all()->toArray();
+        return response()->json($recomendaciones);
     }
 
     /**
@@ -24,9 +27,11 @@ class RecomendacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecomendacionRequest $request)
     {
         //
+        $recomendacion = Recomendacion::create($request->validated());
+        return response()->json($recomendacion, 201);
     }
 
     /**
@@ -38,6 +43,7 @@ class RecomendacionController extends Controller
     public function show(Recomendacion $recomendacion)
     {
         //
+        return response()->json($recomendacion);
     }
 
     /**
@@ -47,9 +53,11 @@ class RecomendacionController extends Controller
      * @param  \App\Models\Recomendacion  $recomendacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recomendacion $recomendacion)
+    public function update(RecomendacionRequest $request, Recomendacion $recomendacion)
     {
         //
+        $recomendacion->update($request->validated());
+        return response()->json($recomendacion, 200);
     }
 
     /**
@@ -61,5 +69,7 @@ class RecomendacionController extends Controller
     public function destroy(Recomendacion $recomendacion)
     {
         //
+        $recomendacion->delete();
+        return response()->json(null, 204);
     }
 }

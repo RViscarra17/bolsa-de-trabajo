@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Perfil;
+namespace App\Http\Requests\Educacion;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class NivelAcademicoRequest extends FormRequest
+class TipoCertificacionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,13 @@ class NivelAcademicoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_nivel_ac' => [
+            'nombre_tipo_cert' => [
                 'required',
                 'string',
                 'regex:/^[A-zÀ-ú0-9\s]+$/',
-                'min:3',
-                'max:50',
-                Rule::unique('nivel_academico')->ignore(
-                    ($this->nivel && $this->nivel->nombre_nivel_ac == $this->nombre_nivel_ac) ?
-                        $this->nivel->id : null
+                Rule::unique('tipo_certificacion')->ignore(
+                    ($this->tipo && strcasecmp($this->tipo->nombre_tipo_cert, $this->nombre_tipo_cert) == 0) ?
+                        $this->tipo->id : null
                 )
             ],
         ];

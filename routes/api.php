@@ -14,15 +14,16 @@ use App\Http\Controllers\Oferta\SectorController;
 use App\Http\Controllers\Oferta\CategoriaPuestoController;
 use App\Http\Controllers\Otro\TipoLogroController;
 use App\Http\Controllers\Otro\LogroController;
-use App\Http\Controllers\Perfil\TipoCertificacionController;
-use App\Http\Controllers\Perfil\NivelAcademicoController;
+use App\Http\Controllers\Otro\RecomendacionController;
+use App\Http\Controllers\Otro\PublicacionController;
+use App\Http\Controllers\Otro\EventoController;
 use App\Http\Controllers\Perfil\CategoriaTituloController;
 use App\Http\Controllers\Perfil\CategoriaHabilidadController;
 use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
-use App\Http\Controllers\Otro\RecomendacionController;
-use App\Http\Controllers\Otro\PublicacionController;
-use App\Http\Controllers\Otro\EventoController;
+use App\Http\Controllers\Educacion\TipoCertificacionController;
+use App\Http\Controllers\Educacion\NivelAcademicoController;
+
 
 /*
 |--------------------------------------------------------------------------

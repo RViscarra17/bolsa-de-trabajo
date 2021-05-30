@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Educacion;
 
-use App\Models\InstitucionCertificadora;
+use App\Models\Educacion\InstitucionCertificadora;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Educacion\InstitucionCertificadoraRequest;
 
 class InstitucionCertificadoraController extends Controller
 {
@@ -15,6 +17,9 @@ class InstitucionCertificadoraController extends Controller
     public function index()
     {
         //
+        $institucionesCertificadora=InstitucionCertificadora::all()->toArray();
+        return response()->json($institucionesCertificadora);
+
     }
 
     /**
@@ -23,9 +28,11 @@ class InstitucionCertificadoraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InstitucionCertificadoraRequest $request)
     {
         //
+        $institucionCertificadora = InstitucionCertificadora::create($request->validated());
+        return response()->json($institucionCertificadora,201);
     }
 
     /**
@@ -37,6 +44,7 @@ class InstitucionCertificadoraController extends Controller
     public function show(InstitucionCertificadora $institucionCertificadora)
     {
         //
+        return response()->json($institucionCertificadora);
     }
 
     /**
@@ -46,9 +54,11 @@ class InstitucionCertificadoraController extends Controller
      * @param  \App\Models\InstitucionCertificadora  $institucionCertificadora
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InstitucionCertificadora $institucionCertificadora)
+    public function update(InstitucionCertificadoraRequest $request, InstitucionCertificadora $institucionCertificadora)
     {
         //
+        $institucionCertificadora->update($request->validated());
+        return response()->json($institucionCertificadora,200);
     }
 
     /**
@@ -60,5 +70,8 @@ class InstitucionCertificadoraController extends Controller
     public function destroy(InstitucionCertificadora $institucionCertificadora)
     {
         //
+        $institucionCertificadora->delete();
+        return response()->json(null,200);
+
     }
 }

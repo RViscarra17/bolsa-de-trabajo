@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Perfil;
+namespace App\Http\Controllers\Educacion;
 
 use App\Models\Perfil\CategoriaTitulo;
 use Illuminate\Http\Request;

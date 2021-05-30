@@ -25,11 +25,10 @@ class EventoRequest extends FormRequest
     {
         return [
             //
-            'id_perfil' => 'required|exists:perfil,id',
+            'id_perfil' => 'exists:perfil,id',
             'lugar' => 'required|string|max:50',
-            'pais' => 'required|string|max:25',
             'anfitrion' => 'required|string|max:50',
-            //'fecha_evento' => 'required',
+            'fecha_evento' => 'bail|required|date|date_format:d/m/y|before_or_equal:today',
         ];
     }
 }

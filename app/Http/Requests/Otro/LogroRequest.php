@@ -25,7 +25,7 @@ class LogroRequest extends FormRequest
     {
         return [
             'nombre_logro' => 'required|string|regex:/^[0-9]+$/|size:50',
-            //'fecha_logro'=>'required,
+            'fecha_logro'=> 'bail|required|date|date_format:d/m/y|before_or_equal:today',
             'id_perfil' => 'required|exists:perfil,id',
             'id_tipo_logro' => 'required|exists:tipo_logro,id',
         ];

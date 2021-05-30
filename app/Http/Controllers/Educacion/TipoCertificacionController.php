@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Educacion;
 
-use App\Models\Perfil\TipoCertificacion;
+use App\Models\Educacion\TipoCertificacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Perfil\TipoCertificacionRequest;
+use App\Http\Requests\Educacion\TipoCertificacionRequest;
 
 class TipoCertificacionController extends Controller
 {

@@ -2,6 +2,8 @@
 
 namespace App\Models\Perfil;
 
+use App\Models\Educacion\Certificacion;
+use App\Models\Educacion\Conocimiento;
 use App\Models\Otro\Recomendacion;
 use App\Models\Otro\Publicacion;
 use App\Models\Otro\Logro;
@@ -27,5 +29,13 @@ class Perfil extends Model
     public function evento(): HasMany
     {
         return $this->hasMany(Evento::class, 'id_perfil');
+    }
+    public function certificaciones(): HasMany
+    {
+        return $this->hasMany(Certificacion::class, 'id_perfil');
+    }
+    public function conocimientos(): HasMany
+    {
+        return $this->hasMany(Conocimiento::class, 'id_perfil');
     }
 }

@@ -15,9 +15,9 @@ class Telefono extends Model
     protected $table = 'telefono';
 
 
-    public function usuario(): BelongsTo
+   public function usuario(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class, 'id_usuario');
+          return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
     public function tipo(): BelongsTo

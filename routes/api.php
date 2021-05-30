@@ -23,7 +23,10 @@ use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
 use App\Http\Controllers\Educacion\TipoCertificacionController;
 use App\Http\Controllers\Educacion\NivelAcademicoController;
-
+use App\Http\Controllers\Educacion\InstitucionCertificadoraController;
+use App\Http\Controllers\Educacion\CertificacionController;
+use App\Http\Controllers\Educacion\ConocimientoController;
+use App\Http\Controllers\Educacion\TituloAcademicoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -257,9 +260,36 @@ Route::put('/publicaciones/{publicacion}',[PublicacionController::class,'update'
 Route::delete('/publicaciones/{publicacion}',[PublicacionController::class,'delete'])->name('publicaciones.delete');
  
 //Eventos
-//Publicaciones
 Route::get('/eventos',[EventoController::class,'index'])->name('eventos.index');
 Route::post('/eventos',[EventoController::class,'store'])->name('eventos.store');
 Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show');
 Route::put('/eventos/{evento}',[EventoController::class,'update'])->name('eventos.update');
 Route::delete('/eventos/{evento}',[EventoController::class,'delete'])->name('eventos.delete');
+
+//Institucion Certificadora
+Route::get('/instituciones-cert',[InstitucionCertificadoraController::class,'index'])->name('instituciones-cert.index');
+Route::post('/instituciones-cert',[InstitucionCertificadoraController::class,'store'])->name('instituciones-cert.store');
+Route::get('/instituciones-cert/{institucionCertificadora}',[InstitucionCertificadoraController::class,'show'])->name('instituciones-cert.show');
+Route::put('/instituciones-cert/{institucionCertificadora}',[InstitucionCertificadoraController::class,'update'])->name('instituciones-cert.update');
+Route::delete('/instituciones-cert/{institucionCertificadora}',[InstitucionCertificadoraController::class,'delete'])->name('instituciones-cert.delete');
+
+//Certificación
+Route::get('/certificaciones',[CertificacionController::class,'index'])->name('certificaciones.index');
+Route::post('/certificaciones',[CertificacionController::class,'store'])->name('certificaciones.store');
+Route::get('/certificaciones/{certificacion}',[CertificacionController::class,'show'])->name('certificaciones.show');
+Route::put('/certificaciones/{certificacion}',[CertificacionController::class,'update'])->name('certificaciones.update');
+Route::delete('/certificaciones/{certificacion}',[CertificacionController::class,'delete'])->name('certificaciones.delete');
+
+//Titulo Academico
+Route::get('/titulos-academicos',[TituloAcademicoController::class,'index'])->name('titulos-academicos.index');
+Route::post('/titulos-academicos',[TituloAcademicoController::class,'store'])->name('titulos-academicos.store');
+Route::get('/titulos-academicos/{tituloAcademico}',[TituloAcademicoController::class,'show'])->name('titulos-academicos.show');
+Route::put('/titulos-academicos/{tituloAcademico}',[TituloAcademicoController::class,'update'])->name('titulos-academicos.update');
+Route::delete('/titulos-academicos/{tituloAcademico}',[TituloAcademicoController::class,'delete'])->name('titulos-academicos.delete');
+
+//Conocimiento
+Route::get('/conocimientos',[ConocimientoController::class,'index'])->name('conocimientos.index');
+Route::post('/conocimientos',[ConocimientoController::class,'store'])->name('conocimientos.store');
+Route::get('/conocimientos/{conocimiento}',[ConocimientoController::class,'show'])->name('conocimientos.show');
+Route::put('/conocimientos/{conocimiento}',[ConocimientoController::class,'update'])->name('conocimientos.update');
+Route::delete('/conocimientos/{conocimiento}',[ConocimientoController::class,'delete'])->name('conocimientos.delete');

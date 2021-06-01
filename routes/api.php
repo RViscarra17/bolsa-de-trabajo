@@ -17,8 +17,8 @@ use App\Http\Controllers\Otro\LogroController;
 use App\Http\Controllers\Otro\RecomendacionController;
 use App\Http\Controllers\Otro\PublicacionController;
 use App\Http\Controllers\Otro\EventoController;
-use App\Http\Controllers\Perfil\CategoriaTituloController;
-use App\Http\Controllers\Perfil\CategoriaHabilidadController;
+use App\Http\Controllers\Educacion\CategoriaTituloController;
+use App\Http\Controllers\Habilidad\CategoriaHabilidadController;
 use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
 use App\Http\Controllers\Educacion\TipoCertificacionController;
@@ -27,6 +27,8 @@ use App\Http\Controllers\Educacion\InstitucionCertificadoraController;
 use App\Http\Controllers\Educacion\CertificacionController;
 use App\Http\Controllers\Educacion\ConocimientoController;
 use App\Http\Controllers\Educacion\TituloAcademicoController;
+use App\Http\Controllers\Habilidad\HabilidadController;
+use App\Http\Controllers\Habilidad\NivelIdiomaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -293,3 +295,18 @@ Route::post('/conocimientos',[ConocimientoController::class,'store'])->name('con
 Route::get('/conocimientos/{conocimiento}',[ConocimientoController::class,'show'])->name('conocimientos.show');
 Route::put('/conocimientos/{conocimiento}',[ConocimientoController::class,'update'])->name('conocimientos.update');
 Route::delete('/conocimientos/{conocimiento}',[ConocimientoController::class,'delete'])->name('conocimientos.delete');
+
+//Habilidad
+Route::get('/habilidades',[HabilidadController::class,'index'])->name('habilidades.index');
+Route::post('/habilidades',[HabilidadController::class,'store'])->name('habilidades.store');
+Route::get('/habilidades/{habilidad}',[HabilidadController::class,'show'])->name('habilidades.show');
+Route::put('/habilidades/{habilidad}',[HabilidadController::class,'update'])->name('habilidades.update');
+Route::delete('/habilidades/{habilidad}',[HabilidadController::class,'delete'])->name('habilidades.delete');
+
+//Nivel Idioma
+//Habilidad
+Route::get('/nivel-idiomas',[NivelIdiomaController::class,'index'])->name('nivel-idiomas.index');
+Route::post('/nivel-idiomas',[NivelIdiomaController::class,'store'])->name('nivel-idiomas.store');
+Route::get('/nivel-idiomas/{nivel_idioma}',[NivelIdiomaController::class,'show'])->name('nivel-idiomas.show');
+Route::put('/nivel-idiomas/{nivel_idioma}',[NivelIdiomaController::class,'update'])->name('nivel-idiomas.update');
+Route::delete('/nivel-idiomas/{nivel_idioma}',[NivelIdiomaController::class,'delete'])->name('nivel-idiomas.delete');

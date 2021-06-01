@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Perfil;
+namespace App\Models\Habilidad;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +19,6 @@ class TipoNivel extends Model
 
     public function nivel_idioma(): HasMany
     {
-        return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
+        return $this->hasMany(NivelIdioma::class, 'id_tipo_nivel');
     }
 }

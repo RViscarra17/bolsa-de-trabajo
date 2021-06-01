@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Perfil;
+namespace App\Http\Controllers\Habilidad;
 
-use App\Models\Perfil\CategoriaHabilidad;
+use App\Models\Habilidad\CategoriaHabilidad;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Perfil\CategoriaHabilidadRequest;
+use App\Http\Requests\Habilidad\CategoriaHabilidadRequest;
 
 class CategoriaHabilidadController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Perfil;
+namespace App\Http\Controllers\Habilidad;
 
-use App\Models\Perfil\TipoNivel;
+use App\Models\Habilidad\TipoNivel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +16,9 @@ class TipoNivelController extends Controller
     public function index()
     {
         //
+        $tipoNiveles=TipoNivel::all()->toArray();
+        return response()->json($tipoNiveles);
+
     }
 
     /**
@@ -38,6 +41,7 @@ class TipoNivelController extends Controller
     public function show(TipoNivel $tipoNivel)
     {
         //
+        return response()->json($tipoNivel);
     }
 
     /**

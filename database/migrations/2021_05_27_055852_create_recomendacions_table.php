@@ -15,9 +15,9 @@ class CreateRecomendacionsTable extends Migration
     {
         Schema::create('recomendacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_rec',100);
-            $table->string('telefono_rec',8);
-            $table->string('correo_rec',255);
+            $table->string('nombre_rec', 100);
+            $table->string('telefono_rec', 8);
+            $table->string('correo_rec', 255)->nullable();
             $table->unsignedBigInteger('id_perfil');
             $table->timestamps();
 

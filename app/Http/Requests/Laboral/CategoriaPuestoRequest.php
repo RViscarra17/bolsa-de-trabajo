@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Oferta;
+namespace App\Http\Requests\Laboral;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

@@ -34,6 +34,7 @@ class RedSocialRequest extends FormRequest
                         $this->red->id : null
                 )
             ],
+            'url' => 'required|url|max:100',
         ];
     }
 }

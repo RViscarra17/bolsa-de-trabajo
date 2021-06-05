@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Educacion;
 
-use App\Models\Perfil\CategoriaTitulo;
+use App\Models\Educacion\CategoriaTitulo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Perfil\CategoriaTituloRequest;
+use App\Http\Requests\Educacion\CategoriaTituloRequest;
 
 class CategoriaTituloController extends Controller
 {

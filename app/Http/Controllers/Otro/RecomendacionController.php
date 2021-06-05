@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Otro;
 
 
-use Illuminate\Http\Request\Otro\RecomendacionRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Otro\RecomendacionRequest;
 use App\Models\Otro\Recomendacion;
 
 class RecomendacionController extends Controller

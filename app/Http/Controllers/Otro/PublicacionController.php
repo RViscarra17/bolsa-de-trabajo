@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Otro;
 use App\Models\Otro\Publicacion;
 use App\Http\Requests\Otro\PublicacionRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PublicacionController extends Controller
 {
@@ -16,7 +17,7 @@ class PublicacionController extends Controller
     public function index()
     {
         //
-        $publicaciones=Publicacion::all()->toArray();
+        $publicaciones = Publicacion::all()->toArray();
         return response()->json($publicaciones);
     }
 
@@ -29,9 +30,8 @@ class PublicacionController extends Controller
     public function store(PublicacionRequest $request)
     {
         //
-        $publicacion=Publicacion::create($request->validated());
-        return response()->json($publicacion,201);
-        
+        $publicacion = Publicacion::create($request->validated());
+        return response()->json($publicacion, 201);
     }
 
     /**
@@ -44,7 +44,6 @@ class PublicacionController extends Controller
     {
         //
         return response()->json($publicacion);
-
     }
 
     /**
@@ -58,7 +57,7 @@ class PublicacionController extends Controller
     {
         //
         $publicacion->update($request->validated());
-        return response()->json($publicacion,200);
+        return response()->json($publicacion, 200);
     }
 
     /**
@@ -71,6 +70,6 @@ class PublicacionController extends Controller
     {
         //
         $publicacion->delete();
-        return response()->json(null,204);
+        return response()->json(null, 204);
     }
 }

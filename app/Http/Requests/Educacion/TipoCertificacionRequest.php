@@ -28,7 +28,8 @@ class TipoCertificacionRequest extends FormRequest
             'nombre_tipo_cert' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
+                'max:50',
                 Rule::unique('tipo_certificacion')->ignore(
                     ($this->tipo && strcasecmp($this->tipo->nombre_tipo_cert, $this->nombre_tipo_cert) == 0) ?
                         $this->tipo->id : null

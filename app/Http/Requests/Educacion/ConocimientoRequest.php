@@ -25,13 +25,13 @@ class ConocimientoRequest extends FormRequest
     {
         return [
             //
-            'id_perfil'=> 'required|exists:perfil,id',
-            'id_titulo_ac'=> 'required|exists:titulo_academico,id',
-            'id_nivel_ac'=> 'exists:nivel_academico,id',//no obligatorio
-            'institucion_academica'=> 'required|string|regex:/^[0-9]+$/|size:50',
-            'fecha_inicio' => 'bail|date|date_format:d/m/y|before_or_equal:today',//no requerido
-            'fecha_fin'=> 'bail|date|date_format:d/m/y|before_or_equal:today',
-            'en_curso'=>'boolean',
+            'id_perfil' => 'required|exists:perfil,id',
+            'id_titulo_ac' => 'required|exists:titulo_academico,id',
+            'id_nivel_ac' => 'exists:nivel_academico,id', //no obligatorio
+            'institucion_academica' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|size:50',
+            'fecha_inicio' => 'bail|date|date_format:d/m/Y|before_or_equal:today', //no requerido
+            'fecha_fin' => 'bail|date|date_format:d/m/Y|before_or_equal:today',
+            'en_curso' => 'nullable|boolean',
         ];
     }
 }

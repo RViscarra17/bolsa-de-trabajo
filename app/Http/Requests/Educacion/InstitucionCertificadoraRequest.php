@@ -28,8 +28,8 @@ class InstitucionCertificadoraRequest extends FormRequest
             'nombre_institucion_cert' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
-               
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
+                'max:25',
             ]
         ];
     }

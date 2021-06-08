@@ -24,7 +24,7 @@ class CiudadRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_ciudad' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
+            'nombre_ciudad' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
             'id_estado' => 'required|exists:estado,id',
         ];
     }

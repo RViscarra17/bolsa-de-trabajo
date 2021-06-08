@@ -29,6 +29,7 @@ class RedSocialRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^[a-zA-Z0-9-\s]+$/',
+                'max:50',
                 Rule::unique('red_social')->ignore(
                     ($this->red && strcasecmp($this->red->nombre_red, $this->nombre_red) == 0) ?
                         $this->red->id : null

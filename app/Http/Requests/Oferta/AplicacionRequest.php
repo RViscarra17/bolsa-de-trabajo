@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Usuario;
+namespace App\Http\Requests\Oferta;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TipoUsuarioRequest extends FormRequest
+class AplicacionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class TipoUsuarioRequest extends FormRequest
      */
     public function authorize()
     {
-        return true || $this->user()->es_admin;
+        return true;
     }
 
     /**
@@ -24,14 +24,8 @@ class TipoUsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_tipo_usuario' => 'required|string',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'nombre_tipo_usuario' => 'nombre',
+            'id_perfil' => 'required|exists:perfil,id',
+            'id_oferta' => 'required|exists:oferta,id',
         ];
     }
 }

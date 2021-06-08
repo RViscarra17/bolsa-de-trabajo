@@ -28,7 +28,8 @@ class TipoLogroRequest extends FormRequest
             'nombre_tipo_logro' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
+                'max:25',
                 Rule::unique('tipo_logro')->ignore(
                     ($this->tipo && strcasecmp($this->tipo->nombre_tipo_logro, $this->nombre_tipo_logro) == 0) ?
                         $this->tipo->id : null

@@ -24,7 +24,7 @@ class EstadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_estado' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
+            'nombre_estado' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
             'id_pais' => 'required|exists:pais,id',
         ];
     }

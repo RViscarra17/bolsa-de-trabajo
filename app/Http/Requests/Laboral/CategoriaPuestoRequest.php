@@ -28,7 +28,7 @@ class CategoriaPuestoRequest extends FormRequest
             'nombre_cat_puesto' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
                 'min:3',
                 'max:25',
                 Rule::unique('categoria_puesto')->ignore(

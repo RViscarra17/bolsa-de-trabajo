@@ -24,8 +24,8 @@ class PaisRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_pais' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
-            'codigo_pais' => 'required|string|regex:/^[A-Z]+$/|max:3',
+            'nombre_pais' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
+            'codigo_pais' => 'required|string|regex:/^[A-Z]+$/|min:2|max:3',
             'prefijo' => 'required|string|regex:/^[0-9-]+$/|max:10',
         ];
     }

@@ -25,8 +25,8 @@ class NivelIdiomaRequest extends FormRequest
     {
         return [
             //
-            'id_tipo_nivel'=>'required|exists:tipo_nivel,id',
-            'nombre_nivel_idioma'=>'required|string|regex:/^[0-9]+$/|size:100',
+            'id_tipo_nivel' => 'required|exists:tipo_nivel,id',
+            'nombre_nivel_idioma' => 'required|string|regex:/^[A-zÀ-ú0-9\s+$/|size:25',
         ];
     }
 }

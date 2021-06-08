@@ -28,8 +28,8 @@ class PublicacionRequest extends FormRequest
             'id_perfil' => 'exists:perfil,id',
             'nombre_pub' => 'required|string|max:50',
             'lugar_pub' => 'required|string|max:25',
-            'fecha_pub'=> 'bail|required|date|date_format:d/m/y|before_or_equal:today',
-            'isbn' => 'string|max:15'
+            'fecha_pub' => 'bail|required|date|date_format:d/m/Y|before_or_equal:today',
+            'isbn' => 'nullable|string|max:13',
         ];
     }
 }

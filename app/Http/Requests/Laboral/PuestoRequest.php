@@ -24,7 +24,7 @@ class PuestoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_puesto' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
+            'nombre_puesto' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
             'id_cat_puesto' => 'required|exists:categoria_puesto,id',
         ];
     }

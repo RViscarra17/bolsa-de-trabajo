@@ -14,14 +14,30 @@ use App\Http\Controllers\Oferta\SectorController;
 use App\Http\Controllers\Oferta\CategoriaPuestoController;
 use App\Http\Controllers\Otro\TipoLogroController;
 use App\Http\Controllers\Otro\LogroController;
-use App\Http\Controllers\Perfil\TipoCertificacionController;
-use App\Http\Controllers\Perfil\NivelAcademicoController;
-use App\Http\Controllers\Perfil\CategoriaTituloController;
-use App\Http\Controllers\Perfil\CategoriaHabilidadController;
+use App\Http\Controllers\Otro\RecomendacionController;
+use App\Http\Controllers\Otro\PublicacionController;
+use App\Http\Controllers\Otro\EventoController;
+use App\Http\Controllers\Educacion\CategoriaTituloController;
+use App\Http\Controllers\Habilidad\CategoriaHabilidadController;
 use App\Http\Controllers\Cuestionario\TipoExamenController;
 use App\Http\Controllers\Cuestionario\TipoPreguntaController;
-
-
+use App\Http\Controllers\Educacion\TipoCertificacionController;
+use App\Http\Controllers\Educacion\NivelAcademicoController;
+use App\Http\Controllers\Educacion\InstitucionCertificadoraController;
+use App\Http\Controllers\Educacion\CertificacionController;
+use App\Http\Controllers\Educacion\ConocimientoController;
+use App\Http\Controllers\Educacion\TituloAcademicoController;
+use App\Http\Controllers\Habilidad\HabilidadController;
+use App\Http\Controllers\Habilidad\NivelIdiomaController;
+use App\Http\Controllers\Habilidad\IdiomaController;
+use App\Http\Controllers\Habilidad\IdiomaPerfilController;
+use App\Http\Controllers\Laboral\ExperienciaLaboralController;
+use App\Http\Controllers\Oferta\AplicaController;
+use App\Http\Controllers\Oferta\EmpresaController;
+use App\Http\Controllers\Oferta\OfertaController;
+use App\Http\Controllers\Perfil\PerfilController;
+use App\Http\Controllers\Ubicacion\DireccionController;
+use App\Http\Controllers\Utilidades\UtilidadesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,206 +53,418 @@ use App\Http\Controllers\Cuestionario\TipoPreguntaController;
 //Auth
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
+
 
 /*Admin*/
 
-//Roles
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
+    Route::group(['middleware' => 'is.admin'], function () {
 
-Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
+        //Roles
 
-Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
+        Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
 
-Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
+        Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
 
-Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
+        Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
 
-//Permisos
+        Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
 
-Route::get('/permisos', [PermisoController::class, 'index'])->name('permisos.index');
+        Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
 
-Route::post('/permisos', [PermisoController::class, 'store'])->name('permisos.store');
+        //Permisos
 
-Route::get('/permisos/{permiso}', [PermisoController::class, 'show'])->name('permisos.show');
+        Route::get('/permisos', [PermisoController::class, 'index'])->name('permisos.index');
 
-Route::put('/permisos/{permiso}', [PermisoController::class, 'update'])->name('permisos.update');
+        Route::post('/permisos', [PermisoController::class, 'store'])->name('permisos.store');
 
-Route::delete('/permisos/{permiso}', [PermisoController::class, 'destroy'])->name('permisos.destroy');
+        Route::get('/permisos/{permiso}', [PermisoController::class, 'show'])->name('permisos.show');
 
-//Tipos de Usuario
+        Route::put('/permisos/{permiso}', [PermisoController::class, 'update'])->name('permisos.update');
 
-Route::get('/tipo-usuario', [TipoUsuarioController::class, 'index'])->name('tipo-usuario.index');
+        Route::delete('/permisos/{permiso}', [PermisoController::class, 'destroy'])->name('permisos.destroy');
 
-Route::post('/tipo-usuario', [TipoUsuarioController::class, 'store'])->name('tipo-usuario.store');
+        //Paises
 
-Route::get('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'show'])->name('tipo-usuario.show');
+        Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
 
-Route::put('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'update'])->name('tipo-usuario.update');
+        Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
 
-Route::delete('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'destroy'])->name('tipo-usuario.destroy');
+        Route::get('/paises/{pais}', [PaisController::class, 'show'])->name('paises.show');
 
-//Tipos de Telefono
+        Route::put('/paises/{pais}', [PaisController::class, 'update'])->name('paises.update');
 
-Route::get('/tipo-telefono', [TipoTelefonoController::class, 'index'])->name('tipo-telefono.index');
+        Route::delete('/paises/{pais}', [PaisController::class, 'destroy'])->name('paises.destroy');
 
-Route::post('/tipo-telefono', [TipoTelefonoController::class, 'store'])->name('tipo-telefono.store');
+        //Estados
 
-Route::get('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'show'])->name('tipo-telefono.show');
+        Route::get('/estados', [EstadoController::class, 'index'])->name('estados.index');
 
-Route::put('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'update'])->name('tipo-telefono.update');
+        Route::post('/estados', [EstadoController::class, 'store'])->name('estados.store');
 
-Route::delete('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'destroy'])->name('tipo-telefono.destroy');
+        Route::get('/estados/{estado}', [EstadoController::class, 'show'])->name('estados.show');
 
-//Redes Sociales
+        Route::put('/estados/{estado}', [EstadoController::class, 'update'])->name('estados.update');
 
-Route::get('/redes', [RedSocialController::class, 'index'])->name('redes.index');
+        Route::delete('/estados/{estado}', [EstadoController::class, 'destroy'])->name('estados.destroy');
 
-Route::post('/redes', [RedSocialController::class, 'store'])->name('redes.store');
+        //Ciudades
 
-Route::get('/redes/{red}', [RedSocialController::class, 'show'])->name('redes.show');
+        Route::get('/ciudades', [CiudadController::class, 'index'])->name('ciudades.index');
 
-Route::put('/redes/{red}', [RedSocialController::class, 'update'])->name('redes.update');
+        Route::post('/ciudades', [CiudadController::class, 'store'])->name('ciudades.store');
 
-Route::delete('/redes/{red}', [RedSocialController::class, 'destroy'])->name('redes.destroy');
+        Route::get('/ciudades/{ciudad}', [CiudadController::class, 'show'])->name('ciudades.show');
 
-//Sectores
+        Route::put('/ciudades/{ciudad}', [CiudadController::class, 'update'])->name('ciudades.update');
 
-Route::get('/sectores', [SectorController::class, 'index'])->name('sector.index');
+        Route::delete('/ciudades/{ciudad}', [CiudadController::class, 'destroy'])->name('ciudades.destroy');
 
-Route::post('/sectores', [SectorController::class, 'store'])->name('sector.store');
+        //Tipos de Usuario
 
-Route::get('/sectores/{sector}', [SectorController::class, 'show'])->name('sector.show');
+        Route::get('/tipo-usuario', [TipoUsuarioController::class, 'index'])->name('tipo-usuario.index');
 
-Route::put('/sectores/{sector}', [SectorController::class, 'update'])->name('sector.update');
+        Route::post('/tipo-usuario', [TipoUsuarioController::class, 'store'])->name('tipo-usuario.store');
 
-Route::delete('/sectores/{sector}', [SectorController::class, 'destroy'])->name('sector.destroy');
+        Route::get('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'show'])->name('tipo-usuario.show');
 
-//Categorias de Puesto
+        Route::put('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'update'])->name('tipo-usuario.update');
 
-Route::get('/cat-puesto', [CategoriaPuestoController::class, 'index'])->name('cat-puesto.index');
+        Route::delete('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'destroy'])->name('tipo-usuario.destroy');
 
-Route::post('/cat-puesto', [CategoriaPuestoController::class, 'store'])->name('cat-puesto.store');
+        //Tipos de Telefono
 
-Route::get('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'show'])->name('cat-puesto.show');
+        Route::get('/tipo-telefono', [TipoTelefonoController::class, 'index'])->name('tipo-telefono.index');
 
-Route::put('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'update'])->name('cat-puesto.update');
+        Route::post('/tipo-telefono', [TipoTelefonoController::class, 'store'])->name('tipo-telefono.store');
 
-Route::delete('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'destroy'])->name('cat-puesto.destroy');
+        Route::get('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'show'])->name('tipo-telefono.show');
 
-//Tipo logro
+        Route::put('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'update'])->name('tipo-telefono.update');
 
-Route::get('/tipo-logro', [TipoLogroController::class, 'index'])->name('tipo-logro.index');
+        Route::delete('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'destroy'])->name('tipo-telefono.destroy');
 
-Route::post('/tipo-logro', [TipoLogroController::class, 'store'])->name('tipo-logro.store');
+        //Redes Sociales
 
-Route::get('/tipo-logro/{tipo}', [TipoLogroController::class, 'show'])->name('tipo-logro.show');
+        Route::get('/redes', [RedSocialController::class, 'index'])->name('redes.index');
 
-Route::put('/tipo-logro/{tipo}', [TipoLogroController::class, 'update'])->name('tipo-logro.update');
+        Route::post('/redes', [RedSocialController::class, 'store'])->name('redes.store');
 
-Route::delete('/tipo-logro/{tipo}', [TipoLogroController::class, 'destroy'])->name('tipo-logro.destroy');
+        Route::get('/redes/{red}', [RedSocialController::class, 'show'])->name('redes.show');
 
-//Nivel academico
+        Route::put('/redes/{red}', [RedSocialController::class, 'update'])->name('redes.update');
 
-Route::get('/nivel-ac', [NivelAcademicoController::class, 'index'])->name('nivel-ac.index');
+        Route::delete('/redes/{red}', [RedSocialController::class, 'destroy'])->name('redes.destroy');
 
-Route::post('/nivel-ac', [NivelAcademicoController::class, 'store'])->name('nivel-ac.store');
+        //Sectores
 
-Route::get('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'show'])->name('nivel-ac.show');
+        Route::get('/sectores', [SectorController::class, 'index'])->name('sectores.index');
 
-Route::put('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'update'])->name('nivel-ac.update');
+        Route::post('/sectores', [SectorController::class, 'store'])->name('sectores.store');
 
-Route::delete('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'destroy'])->name('nivel-ac.destroy');
+        Route::get('/sectores/{sector}', [SectorController::class, 'show'])->name('sectores.show');
 
-//Categorias de Titulo
+        Route::put('/sectores/{sector}', [SectorController::class, 'update'])->name('sectores.update');
 
-Route::get('/cat-titulo', [CategoriaTituloController::class, 'index'])->name('cat-titulo.index');
+        Route::delete('/sectores/{sector}', [SectorController::class, 'destroy'])->name('sectores.destroy');
 
-Route::post('/cat-titulo', [CategoriaTituloController::class, 'store'])->name('cat-titulo.store');
+        //Categorias de Puesto
 
-Route::get('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'show'])->name('cat-titulo.show');
+        Route::get('/cat-puesto', [CategoriaPuestoController::class, 'index'])->name('cat-puesto.index');
 
-Route::put('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'update'])->name('cat-titulo.update');
+        Route::post('/cat-puesto', [CategoriaPuestoController::class, 'store'])->name('cat-puesto.store');
 
-Route::delete('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'destroy'])->name('cat-titulo.destroy');
+        Route::get('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'show'])->name('cat-puesto.show');
 
-//Tipos de Certificacion
+        Route::put('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'update'])->name('cat-puesto.update');
 
-Route::get('/tipo-cert', [TipoCertificacionController::class, 'index'])->name('tipo-cert.index');
+        Route::delete('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'destroy'])->name('cat-puesto.destroy');
 
-Route::post('/tipo-cert', [TipoCertificacionController::class, 'store'])->name('tipo-cert.store');
+        //Tipo logro
 
-Route::get('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'show'])->name('tipo-cert.show');
+        Route::get('/tipo-logro', [TipoLogroController::class, 'index'])->name('tipo-logro.index');
 
-Route::put('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'update'])->name('tipo-cert.update');
+        Route::post('/tipo-logro', [TipoLogroController::class, 'store'])->name('tipo-logro.store');
 
-Route::delete('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'destroy'])->name('tipo-cert.destroy');
+        Route::get('/tipo-logro/{tipo}', [TipoLogroController::class, 'show'])->name('tipo-logro.show');
 
-//Categorias de Habilidad
+        Route::put('/tipo-logro/{tipo}', [TipoLogroController::class, 'update'])->name('tipo-logro.update');
 
-Route::get('/cat-habilidad', [CategoriaHabilidadController::class, 'index'])->name('cat-habilidad.index');
+        Route::delete('/tipo-logro/{tipo}', [TipoLogroController::class, 'destroy'])->name('tipo-logro.destroy');
 
-Route::post('/cat-habilidad', [CategoriaHabilidadController::class, 'store'])->name('cat-habilidad.store');
+        //Nivel academico
 
-Route::get('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'show'])->name('cat-habilidad.show');
+        Route::get('/nivel-ac', [NivelAcademicoController::class, 'index'])->name('nivel-ac.index');
 
-Route::put('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'update'])->name('cat-habilidad.update');
+        Route::post('/nivel-ac', [NivelAcademicoController::class, 'store'])->name('nivel-ac.store');
 
-Route::delete('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'destroy'])->name('cat-habilidad.destroy');
+        Route::get('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'show'])->name('nivel-ac.show');
 
-//Tipos de Examen
+        Route::put('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'update'])->name('nivel-ac.update');
 
-Route::get('/tipo-examen', [TipoExamenController::class, 'index'])->name('tipo-examen.index');
+        Route::delete('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'destroy'])->name('nivel-ac.destroy');
 
-Route::post('/tipo-examen', [TipoExamenController::class, 'store'])->name('tipo-examen.store');
+        //Categorias de Titulo
 
-Route::get('/tipo-examen/{tipo}', [TipoExamenController::class, 'show'])->name('tipo-examen.show');
+        Route::get('/cat-titulo', [CategoriaTituloController::class, 'index'])->name('cat-titulo.index');
 
-Route::put('/tipo-examen/{tipo}', [TipoExamenController::class, 'update'])->name('tipo-examen.update');
+        Route::post('/cat-titulo', [CategoriaTituloController::class, 'store'])->name('cat-titulo.store');
 
-Route::delete('/tipo-examen/{tipo}', [TipoExamenController::class, 'destroy'])->name('tipo-examen.destroy');
+        Route::get('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'show'])->name('cat-titulo.show');
 
-//Tipos de Pregunta
+        Route::put('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'update'])->name('cat-titulo.update');
 
-Route::get('/tipo-pregunta', [TipoPreguntaController::class, 'index'])->name('tipo-pregunta.index');
+        Route::delete('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'destroy'])->name('cat-titulo.destroy');
 
-Route::post('/tipo-pregunta', [TipoPreguntaController::class, 'store'])->name('tipo-pregunta.store');
+        //Tipos de Certificacion
 
-Route::get('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'show'])->name('tipo-pregunta.show');
+        Route::get('/tipo-cert', [TipoCertificacionController::class, 'index'])->name('tipo-cert.index');
 
-Route::put('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'update'])->name('tipo-pregunta.update');
+        Route::post('/tipo-cert', [TipoCertificacionController::class, 'store'])->name('tipo-cert.store');
 
-Route::delete('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'destroy'])->name('tipo-pregunta.destroy');
+        Route::get('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'show'])->name('tipo-cert.show');
 
+        Route::put('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'update'])->name('tipo-cert.update');
 
-/*Usuario*/
+        Route::delete('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'destroy'])->name('tipo-cert.destroy');
 
-//Telefonos
+        //Categorias de Habilidad
 
-Route::get('/telefonos', [TelefonoController::class, 'index'])->name('telefono.index');
+        Route::get('/cat-habilidad', [CategoriaHabilidadController::class, 'index'])->name('cat-habilidad.index');
 
-Route::post('/telefonos', [TelefonoController::class, 'store'])->name('telefono.store');
+        Route::post('/cat-habilidad', [CategoriaHabilidadController::class, 'store'])->name('cat-habilidad.store');
 
-Route::get('/telefonos/{telefono}', [TelefonoController::class, 'show'])->name('telefono.show');
+        Route::get('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'show'])->name('cat-habilidad.show');
 
-Route::put('/telefonos/{telefono}', [TelefonoController::class, 'update'])->name('telefono.update');
+        Route::put('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'update'])->name('cat-habilidad.update');
 
-Route::delete('/telefonos/{telefono}', [TelefonoController::class, 'destroy'])->name('telefono.destroy');
+        Route::delete('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'destroy'])->name('cat-habilidad.destroy');
 
-//Redes sociales
+        //Tipos de Examen
 
-Route::get('/redes-usuario', [RedUsuarioController::class, 'index'])->name('redes-usuario.index');
+        Route::get('/tipo-examen', [TipoExamenController::class, 'index'])->name('tipo-examen.index');
 
-Route::post('/redes-usuario', [RedUsuarioController::class, 'store'])->name('redes-usuario.store');
+        Route::post('/tipo-examen', [TipoExamenController::class, 'store'])->name('tipo-examen.store');
 
-Route::get('/redes-usuario/{usuario}', [RedUsuarioController::class, 'show'])->name('redes-usuario.show');
+        Route::get('/tipo-examen/{tipo}', [TipoExamenController::class, 'show'])->name('tipo-examen.show');
 
-Route::put('/redes-usuario/{usuario}', [RedUsuarioController::class, 'update'])->name('redes-usuario.update');
+        Route::put('/tipo-examen/{tipo}', [TipoExamenController::class, 'update'])->name('tipo-examen.update');
 
-Route::delete('/redes-usuario/{usuario}/{red}', [RedUsuarioController::class, 'destroy'])->name('redes-usuario.destroy');
-//Logros
-Route::get('/logros',[LogroController::class,'index'])->name('logros.index');
-Route::post('/logros',[LogroController::class,'store'])->name('logros.store');
-Route::get('/logros/{logro}',[LogroController::class,'show'])->name('logros.show');
-Route::put('/logros/{logro}',[LogroController::class,'update'])->name('logros.update');
-Route::delete('/logros/{logro}',[LogroController::class,'delete'])->name('logros.delete');
+        Route::delete('/tipo-examen/{tipo}', [TipoExamenController::class, 'destroy'])->name('tipo-examen.destroy');
+
+        //Tipos de Pregunta
+
+        Route::get('/tipo-pregunta', [TipoPreguntaController::class, 'index'])->name('tipo-pregunta.index');
+
+        Route::post('/tipo-pregunta', [TipoPreguntaController::class, 'store'])->name('tipo-pregunta.store');
+
+        Route::get('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'show'])->name('tipo-pregunta.show');
+
+        Route::put('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'update'])->name('tipo-pregunta.update');
+
+        Route::delete('/tipo-pregunta/{tipo}', [TipoPreguntaController::class, 'destroy'])->name('tipo-pregunta.destroy');
+
+        //Institucion Certificadora
+        Route::get('/instituciones-cert', [InstitucionCertificadoraController::class, 'index'])->name('instituciones-cert.index');
+        Route::post('/instituciones-cert', [InstitucionCertificadoraController::class, 'store'])->name('instituciones-cert.store');
+        Route::get('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'show'])->name('instituciones-cert.show');
+        Route::put('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'update'])->name('instituciones-cert.update');
+        Route::delete('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'delete'])->name('instituciones-cert.delete');
+
+        //Titulo Academico
+        Route::get('/titulos-academicos', [TituloAcademicoController::class, 'index'])->name('titulos-academicos.index');
+        Route::post('/titulos-academicos', [TituloAcademicoController::class, 'store'])->name('titulos-academicos.store');
+        Route::get('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'show'])->name('titulos-academicos.show');
+        Route::put('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'update'])->name('titulos-academicos.update');
+        Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'delete'])->name('titulos-academicos.delete');
+
+        //Habilidad
+        Route::get('/habilidades', [HabilidadController::class, 'index'])->name('habilidades.index');
+        Route::post('/habilidades', [HabilidadController::class, 'store'])->name('habilidades.store');
+        Route::get('/habilidades/{habilidad}', [HabilidadController::class, 'show'])->name('habilidades.show');
+        Route::put('/habilidades/{habilidad}', [HabilidadController::class, 'update'])->name('habilidades.update');
+        Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'delete'])->name('habilidades.delete');
+
+        //Nivel Idioma
+        Route::get('/nivel-idiomas', [NivelIdiomaController::class, 'index'])->name('nivel-idiomas.index');
+        Route::post('/nivel-idiomas', [NivelIdiomaController::class, 'store'])->name('nivel-idiomas.store');
+        Route::get('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'show'])->name('nivel-idiomas.show');
+        Route::put('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'update'])->name('nivel-idiomas.update');
+        Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'delete'])->name('nivel-idiomas.delete');
+
+        //Idioma
+        Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
+
+        Route::post('/idiomas', [IdiomaController::class, 'store'])->name('idiomas.store');
+
+        Route::get('/idiomas/{idioma}', [IdiomaController::class, 'show'])->name('idiomas.show');
+
+        Route::put('/idiomas/{idioma}', [IdiomaController::class, 'update'])->name('idiomas.update');
+
+        Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'delete'])->name('idiomas.delete');
+
+        //Usuarios
+        Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+
+        Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+
+        Route::get('/usuarios/{usuario}', [UsuarioController::class, 'show'])->name('usuarios.show');
+
+        Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+
+        Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'delete'])->name('usuarios.delete');
+    });
+    /*Usuario*/
+
+    //Telefonos
+
+    Route::get('/telefonos', [TelefonoController::class, 'index'])->name('telefonos.index')
+        ->middleware('can:consultar-telefono');
+
+    Route::post('/telefonos', [TelefonoController::class, 'store'])->name('telefonos.store')
+        ->middleware('can:registrar-telefono');
+
+    Route::get('/telefonos/{telefono}', [TelefonoController::class, 'show'])->name('telefonos.show');
+
+    Route::put('/telefonos/{telefono}', [TelefonoController::class, 'update'])->name('telefonos.update');
+
+    Route::delete('/telefonos/{telefono}', [TelefonoController::class, 'destroy'])->name('telefonos.destroy');
+
+    //Redes sociales
+
+    Route::get('/redes-usuario', [RedUsuarioController::class, 'index'])->name('redes-usuario.index');
+
+    Route::post('/redes-usuario', [RedUsuarioController::class, 'store'])->name('redes-usuario.store');
+
+    Route::get('/redes-usuario/{usuario}', [RedUsuarioController::class, 'show'])->name('redes-usuario.show');
+
+    Route::put('/redes-usuario/{usuario}', [RedUsuarioController::class, 'update'])->name('redes-usuario.update');
+
+    Route::delete('/redes-usuario/{usuario}/{red}', [RedUsuarioController::class, 'destroy'])->name('redes-usuario.destroy');
+
+    //Logros
+    Route::get('/logros', [LogroController::class, 'index'])->name('logros.index');
+    Route::post('/logros', [LogroController::class, 'store'])->name('logros.store');
+    Route::get('/logros/{logro}', [LogroController::class, 'show'])->name('logros.show');
+    Route::put('/logros/{logro}', [LogroController::class, 'update'])->name('logros.update');
+    Route::delete('/logros/{logro}', [LogroController::class, 'delete'])->name('logros.delete');
+
+    //Recomendaciones
+    Route::get('/recomendaciones', [RecomendacionController::class, 'index'])->name('recomendaciones.index');
+    Route::post('/recomendaciones', [RecomendacionController::class, 'store'])->name('recomendaciones.store');
+    Route::get('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'show'])->name('recomendaciones.show');
+    Route::put('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'update'])->name('recomendaciones.update');
+    Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'delete'])->name('recomendaciones.delete');
+
+    //Publicaciones
+    Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
+    Route::post('/publicaciones', [PublicacionController::class, 'store'])->name('publicaciones.store');
+    Route::get('/publicaciones/{publicacion}', [PublicacionController::class, 'show'])->name('publicaciones.show');
+    Route::put('/publicaciones/{publicacion}', [PublicacionController::class, 'update'])->name('publicaciones.update');
+    Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'delete'])->name('publicaciones.delete');
+
+    //Eventos
+    Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
+    Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+    Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
+    Route::delete('/eventos/{evento}', [EventoController::class, 'delete'])->name('eventos.delete');
+
+    //Certificación
+    Route::get('/certificaciones', [CertificacionController::class, 'index'])->name('certificaciones.index');
+    Route::post('/certificaciones', [CertificacionController::class, 'store'])->name('certificaciones.store');
+    Route::get('/certificaciones/{certificacion}', [CertificacionController::class, 'show'])->name('certificaciones.show');
+    Route::put('/certificaciones/{certificacion}', [CertificacionController::class, 'update'])->name('certificaciones.update');
+    Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'delete'])->name('certificaciones.delete');
+
+    //Conocimiento
+    Route::get('/conocimientos', [ConocimientoController::class, 'index'])->name('conocimientos.index');
+    Route::post('/conocimientos', [ConocimientoController::class, 'store'])->name('conocimientos.store');
+    Route::get('/conocimientos/{conocimiento}', [ConocimientoController::class, 'show'])->name('conocimientos.show');
+    Route::put('/conocimientos/{conocimiento}', [ConocimientoController::class, 'update'])->name('conocimientos.update');
+    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'delete'])->name('conocimientos.delete');
+
+
+    //Idiomas
+    Route::get('/idiomas-perfil', [IdiomaPerfilController::class, 'index'])->name('idioma-perfil.index');
+
+    Route::post('/idiomas-perfil', [IdiomaPerfilController::class, 'store'])->name('idioma-perfil.store');
+
+    Route::get('/idiomas-perfil/{perfil}', [IdiomaPerfilController::class, 'show'])->name('idioma-perfil.show');
+
+    Route::put('/idiomas-perfil/{perfil}', [IdiomaPerfilController::class, 'update'])->name('idioma-perfil.update');
+
+    Route::delete('/idiomas-perfil/{perfil}/idioma/{idioma}', [IdiomaPerfilController::class, 'delete'])->name('idioma-perfil.delete');
+
+    //Usuario
+    Route::get('/laborales', [ExperienciaLaboralController::class, 'index'])->name('laborales.index');
+
+    Route::post('/laborales', [ExperienciaLaboralController::class, 'store'])->name('laborales.store');
+
+    Route::get('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'show'])->name('laborales.show');
+
+    Route::put('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'update'])->name('laborales.update');
+
+    Route::delete('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'delete'])->name('laborales.delete');
+
+    //Direccion
+    Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index');
+
+    Route::post('/direcciones', [DireccionController::class, 'store'])->name('direcciones.store');
+
+    Route::get('/direcciones/{direccion}', [DireccionController::class, 'show'])->name('direcciones.show');
+
+    Route::put('/direcciones/{direccion}', [DireccionController::class, 'update'])->name('direcciones.update');
+
+    Route::delete('/direcciones/{direccion}', [DireccionController::class, 'delete'])->name('direcciones.delete');
+
+    //Aplicacion a ofertas (Solo para los postulantes)
+    Route::get('/aplicacion', [AplicaController::class, 'index'])->name('aplicacion.index');
+
+    Route::post('/aplicacion', [AplicaController::class, 'store'])->name('aplicacion.store');
+
+    Route::get('/aplicacion/{oferta}', [AplicaController::class, 'show'])->name('aplicacion.show');
+
+    Route::put('/aplicacion/{oferta}', [AplicaController::class, 'update'])->name('aplicacion.update');
+
+    Route::delete('/aplicacion/{oferta}', [AplicaController::class, 'delete'])->name('aplicacion.delete');
+
+    //Perfiles
+    Route::get('/perfiles', [PerfilController::class, 'index'])->name('perfiles.index');
+
+    Route::post('/perfiles', [PerfilController::class, 'store'])->name('perfiles.store');
+
+    Route::get('/perfiles/{perfil}', [PerfilController::class, 'show'])->name('perfiles.show');
+
+    Route::put('/perfiles/{perfil}', [PerfilController::class, 'update'])->name('perfiles.update');
+
+    Route::delete('/perfiles/{perfil}', [PerfilController::class, 'delete'])->name('perfiles.delete');
+
+    //Empresas
+    Route::get('/empresas', [EmpresaController::class, 'index'])->name('empresas.index');
+
+    Route::post('/empresas', [EmpresaController::class, 'store'])->name('empresas.store');
+
+    Route::get('/empresas/{empresa}', [EmpresaController::class, 'show'])->name('empresas.show');
+
+    Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update');
+
+    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'delete'])->name('empresas.delete');
+
+    //Ofertas
+    Route::get('/ofertas', [OfertaController::class, 'index'])->name('ofertas.index');
+
+    Route::post('/ofertas', [OfertaController::class, 'store'])->name('ofertas.store');
+
+    Route::get('/ofertas/{oferta}', [OfertaController::class, 'show'])->name('ofertas.show');
+
+    Route::put('/ofertas/{oferta}', [OfertaController::class, 'update'])->name('ofertas.update');
+
+    Route::delete('/ofertas/{oferta}', [OfertaController::class, 'delete'])->name('ofertas.delete');
+
+    //Utilidades
+    Route::get('/utilidades/permisos', [UtilidadesController::class, 'permisos']);
+    Route::get('/utilidades/usuario', [UtilidadesController::class, 'usuario']);
+});

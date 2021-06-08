@@ -28,7 +28,7 @@ class SectorRequest extends FormRequest
             'nombre_sector' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
                 'min:3',
                 'max:50',
                 Rule::unique('sector')->ignore(

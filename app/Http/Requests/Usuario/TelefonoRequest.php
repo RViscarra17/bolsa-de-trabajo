@@ -24,7 +24,7 @@ class TelefonoRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_tel' => 'required|string|regex:/^[0-9]+$/|size:8',
+            'numero_tel' => 'required|string|regex:/^[0-9/s]+$/|size:16',
             'id_usuario' => 'required|exists:usuario,id',
             'id_tipo_tel' => 'required|exists:tipo_telefono,id',
         ];

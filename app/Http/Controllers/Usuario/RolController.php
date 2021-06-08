@@ -28,7 +28,8 @@ class RolController extends Controller
      */
     public function store(RolRequest $request)
     {
-        $rol = Rol::create($request->validated());
+        $rol = Rol::create($request->except('permisos'));
+        $rol->syncPermissions($request->only('permisos'));
         return response()->json($rol, 201);
     }
 
@@ -52,7 +53,8 @@ class RolController extends Controller
      */
     public function update(RolRequest $request, Rol $rol)
     {
-        $rol->update($request->validated());
+        $rol->update($request->except('permisos'));
+        $rol->syncPermissions($request->only('permisos'));
         return response()->json($rol, 200);
     }
 

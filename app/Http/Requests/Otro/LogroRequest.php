@@ -24,7 +24,8 @@ class LogroRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_logro' => 'required|string|regex:/^[0-9]+$/|size:50',
+            'nombre_logro' => 'required|string|max:50',
+            'fecha_logro' => 'bail|required|date|date_format:d/m/Y|before_or_equal:today',
             'id_perfil' => 'required|exists:perfil,id',
             'id_tipo_logro' => 'required|exists:tipo_logro,id',
         ];

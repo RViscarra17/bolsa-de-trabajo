@@ -28,8 +28,7 @@ class TipoLogroController extends Controller
      */
     public function store(TipoLogroRequest $request)
     {
-        $tipo = TipoLogro::create($request->validated());
-        return response()->json($tipo, 201);
+        //
     }
 
     /**
@@ -52,8 +51,7 @@ class TipoLogroController extends Controller
      */
     public function update(TipoLogroRequest $request, TipoLogro $tipo)
     {
-        $tipo->update($request->validated());
-        return response()->json($tipo, 200);
+        //
     }
 
     /**
@@ -64,7 +62,6 @@ class TipoLogroController extends Controller
      */
     public function destroy(TipoLogro $tipo)
     {
-        $tipo->delete();
-        return response()->json(null, 204);
+        //
     }
 }

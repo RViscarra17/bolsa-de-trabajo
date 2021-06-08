@@ -14,6 +14,8 @@ class Rol extends Role
 
     protected $hidden = ['guard_name', 'pivot'];
 
+    protected $guard_name = 'web';
+
 
     public function menus(): BelongsToMany
     {

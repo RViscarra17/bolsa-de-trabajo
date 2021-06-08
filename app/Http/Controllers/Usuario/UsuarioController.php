@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Usuario;
 use App\Models\Usuario\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Usuario\UsuarioRequest;
 
 class UsuarioController extends Controller
 {
@@ -15,7 +16,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = Usuario::all()->toArray();
+        return response()->json($usuarios);
     }
 
     /**
@@ -24,9 +26,10 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
-        //
+        $usuario = Usuario::create($request->validated());
+        return response()->json($usuario, 201);
     }
 
     /**
@@ -37,7 +40,7 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
+        return response()->json($usuario);
     }
 
     /**
@@ -47,9 +50,10 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(UsuarioRequest $request, Usuario $usuario)
     {
-        //
+        $usuario->update($request->validated());
+        return response()->json($usuario, 200);
     }
 
     /**
@@ -60,6 +64,7 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        //
+        $usuario->delete();
+        return response()->json(null, 204);
     }
 }

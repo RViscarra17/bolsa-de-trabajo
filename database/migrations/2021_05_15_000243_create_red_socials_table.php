@@ -16,7 +16,7 @@ class CreateRedSocialsTable extends Migration
         Schema::create('red_social', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_red', 50);
-            $table->string('url', 255);
+            $table->string('url', 100);
         });
     }
 

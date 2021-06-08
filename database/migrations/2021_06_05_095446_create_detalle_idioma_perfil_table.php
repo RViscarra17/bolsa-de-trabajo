@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNivelIdiomasTable extends Migration
+class CreateDetalleIdiomaPerfilTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateNivelIdiomasTable extends Migration
      */
     public function up()
     {
-        Schema::create('nivel_idioma', function (Blueprint $table) {
+        Schema::create('detalle_idioma_perfil', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_nivel_idioma', 25);
-            $table->unsignedBigInteger('id_tipo_nivel');
             $table->timestamps();
-
-            $table->foreign('id_tipo_nivel')->references('id')->on('tipo_nivel')->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateNivelIdiomasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nivel_idioma');
+        Schema::dropIfExists('detalle_idioma_perfil');
     }
 }

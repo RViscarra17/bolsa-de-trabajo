@@ -15,12 +15,14 @@ class CreateDireccionsTable extends Migration
     {
         Schema::create('direccion', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_postal');
-            $table->string('ubicacion');
-            $table->string('detalles_extra')->nullable();
+            $table->string('codigo_postal', 15);
+            $table->string('ubicacion', 100);
+            $table->string('detalles_extra', 50)->nullable();
             $table->unsignedBigInteger('id_ciudad');
+            $table->unsignedBigInteger('id_usuario');
 
-            $table->foreign('id_ciudad')->references('id')->on('ciudad')->onDelete('cascade');
+            $table->foreign('id_ciudad')->references('id')->on('ciudad');
+            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
         });
     }
 

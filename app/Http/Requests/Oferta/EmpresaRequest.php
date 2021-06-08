@@ -24,9 +24,10 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_emp' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
-            'razon_social' => 'nullable|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:50',
-            'descripcion_emp' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/|max:255',
+            'nombre_emp' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
+            'razon_social' => 'nullable|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:50',
+            'descripcion_emp' => 'required|string|max:255',
+            'direccion_emp' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:100',
             'sitio_web' => 'nullable|url|max:100',
             'id_usuario' => 'required|exists:usuario,id',
             'id_sector' => 'required|exists:sector,id',

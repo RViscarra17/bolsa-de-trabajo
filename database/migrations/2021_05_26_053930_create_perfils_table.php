@@ -16,13 +16,13 @@ class CreatePerfilsTable extends Migration
         Schema::create('perfil', function (Blueprint $table) {
             $table->id();
             $table->char('genero', 1);
-            $table->char('dui', 10);
+            $table->char('dui', 10)->nullable();
             $table->char('nit', 17);
-            $table->char('nup', 12);
+            $table->char('nup', 12)->nullable();
             $table->date('fecha_nacimiento');
-            $table->string('pasaporte', 9);
+            $table->string('pasaporte', 9)->nullable();
             $table->string('resumen', 255);
-            $table->string('otros_datos', 500);
+            $table->string('otros_datos', 500)->nullable();
             $table->boolean('disponibilidad_viaje')->nullable();
             $table->boolean('posee_vehiculo')->nullable();
             $table->boolean('puede_cambiar_res')->nullable();

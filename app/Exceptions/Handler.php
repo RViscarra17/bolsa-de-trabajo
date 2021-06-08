@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -49,8 +50,13 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             $model = app($exception->getModel());
             return \response()->json([
-                'message' => method_exists($model, 'sinResultados') ? $model->sinResultados() : 'No se encontró el registro',
+                'message' => method_exists($model, 'sinResultados') ?
+                    $model->sinResultados() : 'No se encontró el registro',
             ], 404);
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return \response()->json(['message' => 'Ruta no encontrada',], 404);
         }
 
         return parent::render($request, $exception);

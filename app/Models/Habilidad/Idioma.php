@@ -15,6 +15,8 @@ class Idioma extends Model
 
     protected $table = 'idioma';
 
+    public $timestamps = false;
+
     public function idiomas(): BelongsToMany
     {
         return $this->belongsToMany(Perfil::class, 'idioma_perfil', 'id_idioma', 'id_perfil')

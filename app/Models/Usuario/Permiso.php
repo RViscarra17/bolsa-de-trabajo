@@ -12,4 +12,6 @@ class Permiso extends Permission
     protected $guarded = ['id'];
 
     protected $hidden = ['guard_name', 'pivot'];
+
+    protected $guard_name = 'web';
 }

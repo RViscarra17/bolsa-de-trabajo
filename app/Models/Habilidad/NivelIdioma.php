@@ -14,6 +14,7 @@ class NivelIdioma extends Model
 
     protected $table = 'nivel_idioma';
 
+    public $timestamps = false;
 
     public function categoria(): BelongsTo
     {

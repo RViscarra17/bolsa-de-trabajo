@@ -6,6 +6,7 @@ use App\Models\Oferta\Aplica;
 use App\Models\Oferta\Empresa;
 use App\Models\Oferta\Oferta;
 use App\Models\Perfil\Perfil;
+use App\Models\Ubicacion\Direccion;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,9 @@ class Usuario extends Authenticatable
         'apellidos',
         'correo',
         'password',
+        'es_admin',
+        'activo',
+        'bloqueado',
         'id_tipo_usuario'
     ];
 
@@ -60,6 +64,12 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Telefono::class, 'id_usuario');
     }
+
+    public function direcciones(): HasMany
+    {
+        return $this->hasMany(Direccion::class, 'id_usuario');
+    }
+
     //Solo si el tipo de usuario es empresa
     public function empresa(): HasOne
     {

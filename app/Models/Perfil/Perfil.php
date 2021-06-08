@@ -13,6 +13,7 @@ use App\Models\Otro\Recomendacion;
 use App\Models\Otro\Publicacion;
 use App\Models\Otro\Logro;
 use App\Models\Usuario\Usuario;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,7 +28,12 @@ class Perfil extends Model
 
     protected $table = 'perfil';
 
+    public function setFechaNacimientoAttribute($value)
+    {
+        $this->attributes['fecha_nacimiento'] = isset($value) ? Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d') : null;
+    }
 
+    //Relaciones
     public function experiencia_laboral(): HasMany
     {
         return $this->hasMany(ExperienciaLaboral::class, 'id_perfil');

@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicacion;
 
+use App\Models\Otro\Evento;
 use App\Models\Usuario\Telefono;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,5 +27,10 @@ class Pais extends Model
     public function telefonos(): HasMany
     {
         return $this->hasMany(Telefono::class, 'id_pais');
+    }
+
+    public function eventos(): HasMany
+    {
+        return $this->hasMany(Evento::class, 'id_pais');
     }
 }

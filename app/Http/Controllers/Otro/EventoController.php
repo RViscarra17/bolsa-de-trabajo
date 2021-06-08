@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Otro;
 use App\Models\Otro\Evento;
 use App\Http\Requests\Otro\EventoRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EventoController extends Controller
 {
@@ -16,7 +17,7 @@ class EventoController extends Controller
     public function index()
     {
         //
-        $eventos=Evento::all()->toArray();
+        $eventos = Evento::all()->toArray();
         return response()->json($eventos);
     }
 
@@ -30,8 +31,7 @@ class EventoController extends Controller
     {
         //
         $evento = Evento::create($request->validated());
-        return response()->json($evento,201);
-
+        return response()->json($evento, 201);
     }
 
     /**
@@ -57,7 +57,7 @@ class EventoController extends Controller
     {
         //
         $evento->update($request->validated());
-        return response()->json($evento,200);
+        return response()->json($evento, 200);
     }
 
     /**
@@ -70,6 +70,6 @@ class EventoController extends Controller
     {
         //
         $evento->delete();
-        return response()->json(null,204);
+        return response()->json(null, 204);
     }
 }

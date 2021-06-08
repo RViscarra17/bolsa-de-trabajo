@@ -35,7 +35,7 @@ class RedUsuarioController extends Controller
         $id_red = $request->get('id_red');
         if ($usuario->redes->contains($id_red)) {
             $red = RedSocial::find($id_red);
-            return response()->json(array('code' => 409, 'message' => 'El usuario ya ha agregado ' . $red->nombre_red . ' a su cuenta'));
+            return response()->json(array('message' => 'El usuario ya ha agregado ' . $red->nombre_red . ' a su cuenta'), 409);
         }
 
         $usuario->redes()->attach($id_red, [

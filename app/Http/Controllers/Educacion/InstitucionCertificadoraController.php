@@ -17,9 +17,8 @@ class InstitucionCertificadoraController extends Controller
     public function index()
     {
         //
-        $institucionesCertificadora=InstitucionCertificadora::all()->toArray();
-        return response()->json($institucionesCertificadora);
-
+        $institucionesCertificadoras = InstitucionCertificadora::all()->toArray();
+        return response()->json($institucionesCertificadoras);
     }
 
     /**
@@ -32,7 +31,7 @@ class InstitucionCertificadoraController extends Controller
     {
         //
         $institucionCertificadora = InstitucionCertificadora::create($request->validated());
-        return response()->json($institucionCertificadora,201);
+        return response()->json($institucionCertificadora, 201);
     }
 
     /**
@@ -58,7 +57,7 @@ class InstitucionCertificadoraController extends Controller
     {
         //
         $institucionCertificadora->update($request->validated());
-        return response()->json($institucionCertificadora,200);
+        return response()->json($institucionCertificadora, 200);
     }
 
     /**
@@ -71,7 +70,6 @@ class InstitucionCertificadoraController extends Controller
     {
         //
         $institucionCertificadora->delete();
-        return response()->json(null,200);
-
+        return response()->json(null, 200);
     }
 }

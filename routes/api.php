@@ -53,17 +53,18 @@ use App\Http\Controllers\Utilidades\UtilidadesController;
 //Auth
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout']);
+
 
 
 /*Admin*/
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
+    Route::post('logout', [AuthController::class, 'logout']);
+
     Route::group(['middleware' => 'is.admin'], function () {
 
         //Roles
-
         Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
 
         Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
@@ -75,7 +76,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
 
         //Permisos
-
         Route::get('/permisos', [PermisoController::class, 'index'])->name('permisos.index');
 
         Route::post('/permisos', [PermisoController::class, 'store'])->name('permisos.store');
@@ -87,7 +87,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/permisos/{permiso}', [PermisoController::class, 'destroy'])->name('permisos.destroy');
 
         //Paises
-
         Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
 
         Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
@@ -99,7 +98,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/paises/{pais}', [PaisController::class, 'destroy'])->name('paises.destroy');
 
         //Estados
-
         Route::get('/estados', [EstadoController::class, 'index'])->name('estados.index');
 
         Route::post('/estados', [EstadoController::class, 'store'])->name('estados.store');
@@ -111,7 +109,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/estados/{estado}', [EstadoController::class, 'destroy'])->name('estados.destroy');
 
         //Ciudades
-
         Route::get('/ciudades', [CiudadController::class, 'index'])->name('ciudades.index');
 
         Route::post('/ciudades', [CiudadController::class, 'store'])->name('ciudades.store');
@@ -123,7 +120,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/ciudades/{ciudad}', [CiudadController::class, 'destroy'])->name('ciudades.destroy');
 
         //Tipos de Usuario
-
         Route::get('/tipo-usuario', [TipoUsuarioController::class, 'index'])->name('tipo-usuario.index');
 
         Route::post('/tipo-usuario', [TipoUsuarioController::class, 'store'])->name('tipo-usuario.store');
@@ -135,7 +131,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/tipo-usuario/{tipo}', [TipoUsuarioController::class, 'destroy'])->name('tipo-usuario.destroy');
 
         //Tipos de Telefono
-
         Route::get('/tipo-telefono', [TipoTelefonoController::class, 'index'])->name('tipo-telefono.index');
 
         Route::post('/tipo-telefono', [TipoTelefonoController::class, 'store'])->name('tipo-telefono.store');
@@ -147,7 +142,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/tipo-telefono/{tipo}', [TipoTelefonoController::class, 'destroy'])->name('tipo-telefono.destroy');
 
         //Redes Sociales
-
         Route::get('/redes', [RedSocialController::class, 'index'])->name('redes.index');
 
         Route::post('/redes', [RedSocialController::class, 'store'])->name('redes.store');
@@ -159,7 +153,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/redes/{red}', [RedSocialController::class, 'destroy'])->name('redes.destroy');
 
         //Sectores
-
         Route::get('/sectores', [SectorController::class, 'index'])->name('sectores.index');
 
         Route::post('/sectores', [SectorController::class, 'store'])->name('sectores.store');
@@ -171,7 +164,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/sectores/{sector}', [SectorController::class, 'destroy'])->name('sectores.destroy');
 
         //Categorias de Puesto
-
         Route::get('/cat-puesto', [CategoriaPuestoController::class, 'index'])->name('cat-puesto.index');
 
         Route::post('/cat-puesto', [CategoriaPuestoController::class, 'store'])->name('cat-puesto.store');
@@ -183,7 +175,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/cat-puesto/{categoria}', [CategoriaPuestoController::class, 'destroy'])->name('cat-puesto.destroy');
 
         //Tipo logro
-
         Route::get('/tipo-logro', [TipoLogroController::class, 'index'])->name('tipo-logro.index');
 
         Route::post('/tipo-logro', [TipoLogroController::class, 'store'])->name('tipo-logro.store');
@@ -195,7 +186,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/tipo-logro/{tipo}', [TipoLogroController::class, 'destroy'])->name('tipo-logro.destroy');
 
         //Nivel academico
-
         Route::get('/nivel-ac', [NivelAcademicoController::class, 'index'])->name('nivel-ac.index');
 
         Route::post('/nivel-ac', [NivelAcademicoController::class, 'store'])->name('nivel-ac.store');
@@ -207,7 +197,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/nivel-ac/{nivel}', [NivelAcademicoController::class, 'destroy'])->name('nivel-ac.destroy');
 
         //Categorias de Titulo
-
         Route::get('/cat-titulo', [CategoriaTituloController::class, 'index'])->name('cat-titulo.index');
 
         Route::post('/cat-titulo', [CategoriaTituloController::class, 'store'])->name('cat-titulo.store');
@@ -219,7 +208,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/cat-titulo/{categoria}', [CategoriaTituloController::class, 'destroy'])->name('cat-titulo.destroy');
 
         //Tipos de Certificacion
-
         Route::get('/tipo-cert', [TipoCertificacionController::class, 'index'])->name('tipo-cert.index');
 
         Route::post('/tipo-cert', [TipoCertificacionController::class, 'store'])->name('tipo-cert.store');
@@ -231,7 +219,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/tipo-cert/{tipo}', [TipoCertificacionController::class, 'destroy'])->name('tipo-cert.destroy');
 
         //Categorias de Habilidad
-
         Route::get('/cat-habilidad', [CategoriaHabilidadController::class, 'index'])->name('cat-habilidad.index');
 
         Route::post('/cat-habilidad', [CategoriaHabilidadController::class, 'store'])->name('cat-habilidad.store');
@@ -243,7 +230,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/cat-habilidad/{categoria}', [CategoriaHabilidadController::class, 'destroy'])->name('cat-habilidad.destroy');
 
         //Tipos de Examen
-
         Route::get('/tipo-examen', [TipoExamenController::class, 'index'])->name('tipo-examen.index');
 
         Route::post('/tipo-examen', [TipoExamenController::class, 'store'])->name('tipo-examen.store');
@@ -255,7 +241,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/tipo-examen/{tipo}', [TipoExamenController::class, 'destroy'])->name('tipo-examen.destroy');
 
         //Tipos de Pregunta
-
         Route::get('/tipo-pregunta', [TipoPreguntaController::class, 'index'])->name('tipo-pregunta.index');
 
         Route::post('/tipo-pregunta', [TipoPreguntaController::class, 'store'])->name('tipo-pregunta.store');
@@ -268,30 +253,46 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         //Institucion Certificadora
         Route::get('/instituciones-cert', [InstitucionCertificadoraController::class, 'index'])->name('instituciones-cert.index');
+
         Route::post('/instituciones-cert', [InstitucionCertificadoraController::class, 'store'])->name('instituciones-cert.store');
+
         Route::get('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'show'])->name('instituciones-cert.show');
+
         Route::put('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'update'])->name('instituciones-cert.update');
+
         Route::delete('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'delete'])->name('instituciones-cert.delete');
 
         //Titulo Academico
         Route::get('/titulos-academicos', [TituloAcademicoController::class, 'index'])->name('titulos-academicos.index');
+
         Route::post('/titulos-academicos', [TituloAcademicoController::class, 'store'])->name('titulos-academicos.store');
+
         Route::get('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'show'])->name('titulos-academicos.show');
+
         Route::put('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'update'])->name('titulos-academicos.update');
+
         Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'delete'])->name('titulos-academicos.delete');
 
         //Habilidad
         Route::get('/habilidades', [HabilidadController::class, 'index'])->name('habilidades.index');
+
         Route::post('/habilidades', [HabilidadController::class, 'store'])->name('habilidades.store');
+
         Route::get('/habilidades/{habilidad}', [HabilidadController::class, 'show'])->name('habilidades.show');
+
         Route::put('/habilidades/{habilidad}', [HabilidadController::class, 'update'])->name('habilidades.update');
+
         Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'delete'])->name('habilidades.delete');
 
         //Nivel Idioma
         Route::get('/nivel-idiomas', [NivelIdiomaController::class, 'index'])->name('nivel-idiomas.index');
+
         Route::post('/nivel-idiomas', [NivelIdiomaController::class, 'store'])->name('nivel-idiomas.store');
+
         Route::get('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'show'])->name('nivel-idiomas.show');
+
         Route::put('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'update'])->name('nivel-idiomas.update');
+
         Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'delete'])->name('nivel-idiomas.delete');
 
         //Idioma
@@ -346,46 +347,69 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Logros
     Route::get('/logros', [LogroController::class, 'index'])->name('logros.index');
+
     Route::post('/logros', [LogroController::class, 'store'])->name('logros.store');
+
     Route::get('/logros/{logro}', [LogroController::class, 'show'])->name('logros.show');
+
     Route::put('/logros/{logro}', [LogroController::class, 'update'])->name('logros.update');
+
     Route::delete('/logros/{logro}', [LogroController::class, 'delete'])->name('logros.delete');
 
     //Recomendaciones
     Route::get('/recomendaciones', [RecomendacionController::class, 'index'])->name('recomendaciones.index');
+
     Route::post('/recomendaciones', [RecomendacionController::class, 'store'])->name('recomendaciones.store');
+
     Route::get('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'show'])->name('recomendaciones.show');
+
     Route::put('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'update'])->name('recomendaciones.update');
+
     Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'delete'])->name('recomendaciones.delete');
 
     //Publicaciones
     Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
+
     Route::post('/publicaciones', [PublicacionController::class, 'store'])->name('publicaciones.store');
+
     Route::get('/publicaciones/{publicacion}', [PublicacionController::class, 'show'])->name('publicaciones.show');
+
     Route::put('/publicaciones/{publicacion}', [PublicacionController::class, 'update'])->name('publicaciones.update');
+
     Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'delete'])->name('publicaciones.delete');
 
     //Eventos
     Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
+
     Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
+
     Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+
     Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
+
     Route::delete('/eventos/{evento}', [EventoController::class, 'delete'])->name('eventos.delete');
 
     //Certificación
     Route::get('/certificaciones', [CertificacionController::class, 'index'])->name('certificaciones.index');
+
     Route::post('/certificaciones', [CertificacionController::class, 'store'])->name('certificaciones.store');
+
     Route::get('/certificaciones/{certificacion}', [CertificacionController::class, 'show'])->name('certificaciones.show');
+
     Route::put('/certificaciones/{certificacion}', [CertificacionController::class, 'update'])->name('certificaciones.update');
+
     Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'delete'])->name('certificaciones.delete');
 
     //Conocimiento
     Route::get('/conocimientos', [ConocimientoController::class, 'index'])->name('conocimientos.index');
-    Route::post('/conocimientos', [ConocimientoController::class, 'store'])->name('conocimientos.store');
-    Route::get('/conocimientos/{conocimiento}', [ConocimientoController::class, 'show'])->name('conocimientos.show');
-    Route::put('/conocimientos/{conocimiento}', [ConocimientoController::class, 'update'])->name('conocimientos.update');
-    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'delete'])->name('conocimientos.delete');
 
+    Route::post('/conocimientos', [ConocimientoController::class, 'store'])->name('conocimientos.store');
+
+    Route::get('/conocimientos/{conocimiento}', [ConocimientoController::class, 'show'])->name('conocimientos.show');
+
+    Route::put('/conocimientos/{conocimiento}', [ConocimientoController::class, 'update'])->name('conocimientos.update');
+
+    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'delete'])->name('conocimientos.delete');
 
     //Idiomas
     Route::get('/idiomas-perfil', [IdiomaPerfilController::class, 'index'])->name('idioma-perfil.index');
@@ -466,5 +490,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Utilidades
     Route::get('/utilidades/permisos', [UtilidadesController::class, 'permisos']);
+
     Route::get('/utilidades/usuario', [UtilidadesController::class, 'usuario']);
+
+    Route::get('/utilidades/roles', [UtilidadesController::class, 'roles']);
 });

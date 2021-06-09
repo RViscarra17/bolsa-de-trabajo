@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Usuario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 class RolRequest extends FormRequest
@@ -14,7 +15,12 @@ class RolRequest extends FormRequest
      */
     public function authorize()
     {
-        return true || $this->user()->es_admin;
+        abort_unless(
+            $this->user()->es_admin,
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+        return true;
     }
 
     /**
@@ -36,6 +42,8 @@ class RolRequest extends FormRequest
             ],
             'display_name' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/',
             'descripcion' => 'required|string|regex:/^[A-zÀ-ú0-9\s]+$/',
+            'permisos' => 'nullable|array',
+            'permisos.*' => 'exists:permiso,id'
         ];
     }
 

@@ -15,12 +15,14 @@ class CreateEventosTable extends Migration
     {
         Schema::create('evento', function (Blueprint $table) {
             $table->id();
-            $table->string('lugar',50);
-            $table->string('pais',25);
-            $table->string('anfitrion',50);
+            $table->string('lugar', 50);
+            $table->string('anfitrion', 50);
             $table->date('fecha_evento');
+            $table->unsignedBigInteger('id_pais');
             $table->unsignedBigInteger('id_perfil');
             $table->timestamps();
+
+            $table->foreign('id_pais')->references('id')->on('pais')->onDelete('cascade');
             $table->foreign('id_perfil')->references('id')->on('perfil')->onDelete('cascade');
         });
     }

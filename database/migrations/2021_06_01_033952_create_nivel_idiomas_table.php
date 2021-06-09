@@ -15,9 +15,10 @@ class CreateNivelIdiomasTable extends Migration
     {
         Schema::create('nivel_idioma', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_nivel_idioma',25);
+            $table->string('nombre_nivel_idioma', 25);
             $table->unsignedBigInteger('id_tipo_nivel');
             $table->timestamps();
+
             $table->foreign('id_tipo_nivel')->references('id')->on('tipo_nivel')->onDelete('cascade');
         });
     }

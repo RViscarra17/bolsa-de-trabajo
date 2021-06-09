@@ -30,8 +30,8 @@ class NivelIdiomaController extends Controller
     public function store(NivelIdiomaRequest $request)
     {
         //
-        $nivelIdioma=NivelIdioma::create($request->validated());
-        return response()->json($nivelIdioma->load('categoria'),201);
+        $nivelIdioma = NivelIdioma::create($request->validated());
+        return response()->json($nivelIdioma->load('categoria'), 201);
     }
 
     /**
@@ -57,7 +57,7 @@ class NivelIdiomaController extends Controller
     {
         //
         $nivelIdioma->update($request->validated());
-        return response()->json($nivelIdioma->load('categoria'),200);
+        return response()->json($nivelIdioma->load('categoria'), 200);
     }
 
     /**
@@ -70,6 +70,6 @@ class NivelIdiomaController extends Controller
     {
         //
         $nivelIdioma->delete();
-        return response()->json(null,204);
+        return response()->json(null, 204);
     }
 }

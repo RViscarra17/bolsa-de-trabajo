@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Habilidad;
 
-use App\Models\Idioma;
+use App\Models\Habilidad\HabilidadIdioma;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class IdiomaController extends Controller
+
+class HabilidadIdiomaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +33,10 @@ class IdiomaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Idioma  $idioma
+     * @param  \App\Models\HabilidadIdioma  $habilidadIdioma
      * @return \Illuminate\Http\Response
      */
-    public function show(Idioma $idioma)
+    public function show(HabilidadIdioma $habilidadIdioma)
     {
         //
     }
@@ -43,10 +45,10 @@ class IdiomaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Idioma  $idioma
+     * @param  \App\Models\HabilidadIdioma  $habilidadIdioma
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Idioma $idioma)
+    public function update(Request $request, HabilidadIdioma $habilidadIdioma)
     {
         //
     }
@@ -54,10 +56,10 @@ class IdiomaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Idioma  $idioma
+     * @param  \App\Models\HabilidadIdioma  $habilidadIdioma
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Idioma $idioma)
+    public function destroy(HabilidadIdioma $habilidadIdioma)
     {
         //
     }

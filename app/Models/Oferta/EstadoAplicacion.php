@@ -3,22 +3,22 @@
 namespace App\Models\Oferta;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CategoriaPuesto extends Model
+class EstadoAplicacion extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    protected $table = 'categoria_puesto';
+    protected $table = 'estado_aplicacion';
 
     public $timestamps = false;
 
 
-    public function puestos(): HasMany
+    public function aplicaciones(): HasMany
     {
-        return $this->hasMany(Puesto::class, 'id_cat_puesto');
+        return $this->hasMany(Aplica::class, 'id_estado_ap');
     }
 }

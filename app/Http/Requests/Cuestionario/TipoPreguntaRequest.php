@@ -28,7 +28,8 @@ class TipoPreguntaRequest extends FormRequest
             'nombre_tipo_pre' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
+                'max:25',
                 Rule::unique('tipo_pregunta')->ignore(
                     ($this->tipo && strcasecmp($this->tipo->nombre_tipo_pre, $this->nombre_tipo_pre) == 0) ?
                         $this->tipo->id : null

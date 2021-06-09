@@ -28,7 +28,7 @@ class CategoriaTituloRequest extends FormRequest
             'nombre_cat_titulo' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
                 'min:3',
                 'max:50',
                 Rule::unique('categoria_titulo')->ignore(

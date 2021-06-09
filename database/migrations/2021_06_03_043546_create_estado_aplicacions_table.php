@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangePropertiesToLogroTable extends Migration
+class CreateEstadoAplicacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class ChangePropertiesToLogroTable extends Migration
      */
     public function up()
     {
-        Schema::table('logro', function (Blueprint $table) {
-            //
-            $table->string('isbn',13)->nullable();
+        Schema::create('estado_aplicacion', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_estado_ap', 25);
         });
     }
 
@@ -26,9 +26,6 @@ class ChangePropertiesToLogroTable extends Migration
      */
     public function down()
     {
-        Schema::table('logro', function (Blueprint $table) {
-            //
-            $table->string('isbn',13)->nullable(false);
-        });
+        Schema::dropIfExists('estado_aplicacion');
     }
 }

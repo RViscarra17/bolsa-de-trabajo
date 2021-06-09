@@ -16,9 +16,8 @@ class TipoNivelController extends Controller
     public function index()
     {
         //
-        $tipoNiveles=TipoNivel::all()->toArray();
+        $tipoNiveles = TipoNivel::all()->toArray();
         return response()->json($tipoNiveles);
-
     }
 
     /**

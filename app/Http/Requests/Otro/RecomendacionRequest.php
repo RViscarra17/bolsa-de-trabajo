@@ -26,9 +26,9 @@ class RecomendacionRequest extends FormRequest
         return [
             //
             'id_perfil' => 'required|exists:perfil,id',
-            'nombre_rec' => 'required|string|max:100',
-            'telefono_rec' => 'required|string|max:8',
-            'correo_rec'=>'string|regex:/^[0-9]+$/|max:255',
+            'nombre_rec' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|max:100',
+            'telefono_rec' => 'required|string|max:16',
+            'correo_rec' => 'nullable|string|regex:/^[0-9]+$/|max:255',
         ];
     }
 }

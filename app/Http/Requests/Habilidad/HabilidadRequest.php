@@ -25,8 +25,8 @@ class HabilidadRequest extends FormRequest
     {
         return [
             //
-            'nombre_habilidad'=>'required|string|regex:/^[0-9]+$/|size:100',
-            'id_cat_habilidad'=>'required|exists:categoria_habilidad,id',
+            'nombre_habilidad' => 'required|string|regex://^[A-zÀ-ú0-9.\s]+$/|max:100',
+            'id_cat_habilidad' => 'required|exists:categoria_habilidad,id',
         ];
     }
 }

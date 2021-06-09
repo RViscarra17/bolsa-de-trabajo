@@ -25,11 +25,11 @@ class CertificacionRequest extends FormRequest
     {
         return [
             //
-            'codigo_cert' => 'required|string|regex:/^[0-9]+$/|size:50',
-            'nombre_cert' => 'required|string|regex:/^[0-9]+$/|size:50',
-            'institucion_otorga' => 'required|string|regex:/^[0-9]+$/|size:50',
-            'fecha_desde_cert' => 'bail|required|date|date_format:d/m/y|before_or_equal:today',
-            'fecha_hasta_cert' => 'bail|required|date|date_format:d/m/y|before_or_equal:today',
+            'codigo_cert' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|size:25',
+            'nombre_cert' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|size:50',
+            'institucion_otorga' => 'required|string|regex:/^[A-zÀ-ú0-9.\s]+$/|size:25',
+            'fecha_desde_cert' => 'bail|required|date|date_format:d/m/Y|before_or_equal:today',
+            'fecha_hasta_cert' => 'bail|required|date|date_format:d/m/Y|before_or_equal:today',
             'id_perfil' => 'required|exists:perfil,id',
             'id_tipo_cert' => 'required|exists:tipo_certificacion,id',
             'id_instituciones_cert' => 'required|exists:institucion_certificadora,id',

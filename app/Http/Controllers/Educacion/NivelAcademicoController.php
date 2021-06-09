@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Educacion;
 
-use App\Models\Perfil\NivelAcademico;
+use App\Models\Educacion\NivelAcademico;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Perfil\NivelAcademicoRequest;
+use App\Http\Requests\Educacion\NivelAcademicoRequest;
 
 class NivelAcademicoController extends Controller
 {

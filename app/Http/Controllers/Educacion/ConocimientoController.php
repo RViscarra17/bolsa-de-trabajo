@@ -17,7 +17,7 @@ class ConocimientoController extends Controller
     public function index()
     {
         //
-        $conocimientos = Conocimiento::with('tipo')->get()->toArray();
+        $conocimientos = Conocimiento::with('tipo', 'nivel')->get()->toArray();
         return response()->json($conocimientos);
     }
 
@@ -29,7 +29,6 @@ class ConocimientoController extends Controller
      */
     public function store(ConocimientoRequest $request)
     {
-        //
         $conocimiento = Conocimiento::create($request->validated());
         return response()->json($conocimiento->load('tipo'), 201);
     }
@@ -42,7 +41,6 @@ class ConocimientoController extends Controller
      */
     public function show(Conocimiento $conocimiento)
     {
-        //
         return response()->json($conocimiento);
     }
 
@@ -55,9 +53,8 @@ class ConocimientoController extends Controller
      */
     public function update(ConocimientoRequest $request, Conocimiento $conocimiento)
     {
-        //
         $conocimiento->update($request->validated());
-        return response()->jason($conocimiento->load('tipo'),200);
+        return response()->jason($conocimiento->load('tipo'), 200);
     }
 
     /**
@@ -68,7 +65,6 @@ class ConocimientoController extends Controller
      */
     public function destroy(Conocimiento $conocimiento)
     {
-        //
         $conocimiento->delete();
         return response()->json(null, 204);
     }

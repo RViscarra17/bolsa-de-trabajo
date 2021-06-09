@@ -15,10 +15,10 @@ class CreatePublicacionsTable extends Migration
     {
         Schema::create('publicacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_pub',50);
-            $table->string('lugar_pub',25);
+            $table->string('nombre_pub', 50);
+            $table->string('lugar_pub', 25);
             $table->date('fecha_pub');
-            $table->string('isbn',13);
+            $table->string('isbn', 13)->nullable();
             $table->unsignedBigInteger('id_perfil');
             $table->timestamps();
             $table->foreign('id_perfil')->references('id')->on('perfil')->onDelete('cascade');

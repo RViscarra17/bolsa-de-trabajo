@@ -28,9 +28,9 @@ class CategoriaHabilidadRequest extends FormRequest
             'nombre_cat_habilidad' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
+                'regex:/^[A-zÀ-ú0-9.\s]+$/',
                 'min:3',
-                'max:50',
+                'max:25',
                 Rule::unique('categoria_habilidad')->ignore(
                     ($this->categoria && $this->categoria->nombre_cat_habilidad == $this->nombre_cat_habilidad) ?
                         $this->categoria->id : null

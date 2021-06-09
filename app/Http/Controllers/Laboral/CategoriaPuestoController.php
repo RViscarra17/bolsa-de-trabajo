@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Oferta;
+namespace App\Http\Controllers\Laboral;
 
-use App\Models\Oferta\CategoriaPuesto;
+use App\Models\Laboral\CategoriaPuesto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Oferta\CategoriaPuestoRequest;
+use App\Http\Requests\Laboral\CategoriaPuestoRequest;
 
 class CategoriaPuestoController extends Controller
 {

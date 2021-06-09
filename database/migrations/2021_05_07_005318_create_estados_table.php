@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFechaToLogroTable extends Migration
+class CreateEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddFechaToLogroTable extends Migration
      */
     public function up()
     {
-        Schema::table('logro', function (Blueprint $table) {
-            //
-            $table->date('fecha_logro')->after('nombre_logro');
+        Schema::create('estado', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_estado', 50);
+            $table->unsignedBigInteger('id_pais');
+
+            $table->foreign('id_pais')->references('id')->on('pais')->onDelete('cascade');
         });
     }
 
@@ -26,9 +29,6 @@ class AddFechaToLogroTable extends Migration
      */
     public function down()
     {
-        Schema::table('logro', function (Blueprint $table) {
-            //
-            $table->dropColumn('fecha_logro');
-        });
+        Schema::dropIfExists('estado');
     }
 }

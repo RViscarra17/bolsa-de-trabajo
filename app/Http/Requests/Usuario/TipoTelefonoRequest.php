@@ -24,7 +24,7 @@ class TipoTelefonoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_tipo_tel' => 'required|string',
+            'nombre_tipo_tel' => 'required|string|max:50',
         ];
     }
 

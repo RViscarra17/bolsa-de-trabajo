@@ -3,26 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Usuario\UsuarioRequest;
 use App\Models\Usuario\Usuario;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(UsuarioRequest $request)
     {
-        $request->validate([
-            'nombres' => 'required|string|regex:/^[A-zÀ-ú\s]+$/',
-            'apellidos' => 'required|string|regex:/^[A-zÀ-ú\s]+$/',
-            'correo' => 'required|email|unique:usuario,correo',
-            'password' => 'required|min:8|confirmed'
-        ]);
-
-        $usuario = Usuario::create([
-            'nombres' => $request->nombres,
-            'apellidos' => $request->apellidos,
-            'correo' => $request->correo,
-            'password' => bcrypt($request->password),
-        ]);
+        $usuario = Usuario::create($request->except('roles'));
 
         return response()->json($usuario);
     }
@@ -52,8 +41,9 @@ class AuthController extends Controller
         return response()->json(['access_token' => $authToken,]);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->currentAccessToken()->delete();
+        return response()->json(null, 200);
     }
 }

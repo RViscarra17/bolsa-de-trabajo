@@ -28,7 +28,8 @@ class UsuarioController extends Controller
      */
     public function store(UsuarioRequest $request)
     {
-        $usuario = Usuario::create($request->validated());
+        $usuario = Usuario::create($request->except('roles'));
+        $usuario->syncRoles($request->only('roles'));
         return response()->json($usuario, 201);
     }
 
@@ -52,7 +53,8 @@ class UsuarioController extends Controller
      */
     public function update(UsuarioRequest $request, Usuario $usuario)
     {
-        $usuario->update($request->validated());
+        $usuario->update($request->except('roles'));
+        $usuario->syncPermissions($request->only('roles'));
         return response()->json($usuario, 200);
     }
 

@@ -36,6 +36,11 @@ class PerfilRequest extends FormRequest
             'posee_vehiculo' => 'nullable|boolean',
             'puede_cambiar_res' => 'nullable|boolean',
             'id_usuario' => 'required|exists:usuario,id',
+            //Array de IDs de las hobilidades y su experiencia (en años)
+            'habilidades' => 'nullable|array',
+            'habilidades.*' => 'distinct|exists:habilidad,id',
+            'hab_exp' => 'required_with:habilidades|array',
+            'hab_exp.*' => 'nullable|integer',
         ];
     }
 }

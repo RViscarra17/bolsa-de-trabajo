@@ -14,6 +14,12 @@ class UtilidadesController extends Controller
         return PermisosUsuarioResource::collection($permisos);
     }
 
+    public function roles()
+    {
+        $roles = auth()->user()->getRoleNames();
+        return response()->json($roles);
+    }
+
     public function usuario()
     {
         $usuario = auth()->user();
@@ -25,5 +31,15 @@ class UtilidadesController extends Controller
                 'tipo' => $usuario->tipo->nombre_tipo_usuario,
             ]
         ], 200);
+    }
+
+    public function buscar_aspirante()
+    {
+        //TODO
+    }
+
+    public function buscar_ofertas()
+    {
+        //TODO
     }
 }

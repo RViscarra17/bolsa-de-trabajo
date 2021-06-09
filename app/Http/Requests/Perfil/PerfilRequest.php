@@ -25,11 +25,11 @@ class PerfilRequest extends FormRequest
     {
         return [
             'genero' => 'required|string|size:1',
-            'dui' => 'nullable|string|regex:/^\d{8}-\d$/|size:10',
+            'dui' => 'required_without:pasaporte|nullable|string|regex:/^\d{8}-\d$/|size:10',
             'nit' => 'required|string|regex:/^\d{4}-\d{6}-\d{3}-\d$/|size:17',
             'nup' => 'nullable|string|regex:/^\d{12}$/|size:12',
             'fecha_nacimiento' => 'bail|required|date|date_format:d/m/Y|before:18 years ago',
-            'pasaporte' => 'required|string|max:9',
+            'pasaporte' => 'required_without:dui|nullable|string|size:9',
             'resumen' => 'nullable|string|max:255',
             'otros_datos' => 'nullable|string|max:500',
             'disponibilidad_viaje' => 'nullable|boolean',

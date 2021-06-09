@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Usuario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class UsuarioRequest extends FormRequest
 {
@@ -27,16 +29,32 @@ class UsuarioRequest extends FormRequest
         return [
             'nombres' => 'required|string|regex:/^[A-zÀ-ú.\s]+$/|max:50',
             'apellidos' => 'required|string|regex:/^[A-zÀ-ú.\s]+$/|max:50',
-            'email' => [
+            'correo' => [
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore($this->usuario->id ?? null),
+                Rule::unique('usuario')->ignore($this->usuario->id ?? null),
             ],
-            'password' => 'required|min:8|confirmed',
+            'password' => 'sometimes|required|min:8|confirmed',
             'id_tipo_usuario' => 'nullable|exists:tipo_usuario,id',
             'roles' => 'nullable|array',
             'roles.*' => 'exists:rol,id',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->method() == 'PUT' && is_null($this->password)) {
+            $this->request->remove('password');
+        }
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function () {
+            if (!is_null($this->password)) {
+                $this->merge(['password' => Hash::make($this->password)]);
+            }
+        });
     }
 }

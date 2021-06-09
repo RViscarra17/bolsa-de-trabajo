@@ -41,6 +41,11 @@ class AuthController extends Controller
         return response()->json(['access_token' => $authToken,]);
     }
 
+    public function user()
+    {
+        return response()->json(auth()->user());
+    }
+
     public function logout()
     {
         auth()->user()->currentAccessToken()->delete();

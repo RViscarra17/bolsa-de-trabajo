@@ -31,5 +31,11 @@ class PaisSeeder extends Seeder
             'nombre_ciudad' => 'San salvador',
             'id_estado' => $estado->id,
         ]);
+
+        Pais::create([
+            'nombre_pais' => 'El Salvador',
+            'codigo_pais' => 'SLV',
+            'prefijo' => '503',
+        ]);
     }
 }

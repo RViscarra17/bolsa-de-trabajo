@@ -15,8 +15,8 @@ class RolSeeder extends Seeder
     public function run()
     {
         Rol::create([
-            'display_name' => 'Admin',
-            'name' => 'admin',
+            'display_name' => 'Administrador',
+            'name' => 'administrador',
             'descripcion' => 'test',
         ])->syncPermissions([]);
 
@@ -33,8 +33,8 @@ class RolSeeder extends Seeder
         ])->syncPermissions([]);
 
         Rol::create([
-            'display_name' => 'Evaluador',
-            'name' => 'evaluador',
+            'display_name' => 'Evaluador RRHH',
+            'name' => 'evaluador rrhh',
             'descripcion' => 'test',
         ])->syncPermissions([]);
     }

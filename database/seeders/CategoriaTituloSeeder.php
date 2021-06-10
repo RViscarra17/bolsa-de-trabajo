@@ -15,18 +15,15 @@ class CategoriaTituloSeeder extends Seeder
      */
     public function run()
     {
-        $cat = CategoriaTitulo::create([
-            'nombre_cat_titulo' => 'Ingenieria',
-        ]);
-
-        TituloAcademico::create([
-            'nombre_titulo_ac' => 'Ingenieria de sistemas informaticos',
-            'id_cat_titulo' => $cat->id,
-        ]);
-
-        TituloAcademico::create([
-            'nombre_titulo_ac' => 'Ingenieria de desarrollo de software',
-            'id_cat_titulo' => $cat->id,
-        ]);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Ingenieria y arquitectura']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Medicina']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Odontología']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Humanidades']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Ciencias agronomicas']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Ciencias económicas']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Ciencias naturales y matemática']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Jurisprudencia']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Química y farmacia']);
+        CategoriaTitulo::create(['nombre_cat_titulo' => 'Otros']);
     }
 }

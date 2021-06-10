@@ -39,9 +39,9 @@ class OfertaController extends Controller
 
         if ($request->input('habilidades')) {
             $exp = $request->input('hab_exp');
-            foreach ($request->input('habilidades') as $pos => $id) {
+            foreach ($request->input('habilidades') as $i => $id) {
                 $oferta->habilidades()->attach($id, [
-                    'experiencia' => $exp[$pos],
+                    'experiencia' => $exp[$i],
                 ]);
             }
         }
@@ -66,7 +66,7 @@ class OfertaController extends Controller
      */
     public function show(Oferta $oferta)
     {
-        return response()->json($oferta->load('habilidades'));
+        return response()->json($oferta->load('habilidades', 'titulos', 'puesto'));
     }
 
     /**
@@ -87,6 +87,8 @@ class OfertaController extends Controller
             )
         );
 
+        $oferta->habilidades()->detach();
+
         if ($request->input('habilidades')) {
             $exp = $request->input('hab_exp');
             foreach ($request->input('habilidades') as $pos => $id) {
@@ -95,6 +97,8 @@ class OfertaController extends Controller
                 ]);
             }
         }
+
+        $oferta->titulos()->detach();
 
         if ($request->input('titulos')) {
             $exp = $request->input('titulos_exp');

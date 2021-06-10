@@ -37,6 +37,7 @@ use App\Http\Controllers\Oferta\EmpresaController;
 use App\Http\Controllers\Oferta\OfertaController;
 use App\Http\Controllers\Perfil\PerfilController;
 use App\Http\Controllers\Ubicacion\DireccionController;
+use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Utilidades\UtilidadesController;
 use App\Http\Controllers\Usuario\UsuarioController;
 

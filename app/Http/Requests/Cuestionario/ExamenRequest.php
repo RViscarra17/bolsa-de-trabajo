@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Cuestionario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ExamenRequest extends FormRequest
 {

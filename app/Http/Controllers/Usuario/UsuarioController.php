@@ -54,7 +54,7 @@ class UsuarioController extends Controller
     public function update(UsuarioRequest $request, Usuario $usuario)
     {
         $usuario->update($request->except('roles'));
-        $usuario->syncPermissions($request->only('roles'));
+        $usuario->syncRoles($request->only('roles'));
         return response()->json($usuario, 200);
     }
 

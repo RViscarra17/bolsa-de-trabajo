@@ -28,8 +28,19 @@ class PerfilController extends Controller
      */
     public function store(PerfilRequest $request)
     {
-        $perfil = Perfil::create($request->validated());
-        return response()->json($perfil, 201);
+        $perfil = Perfil::create($request->except(
+            'habilidades',
+            'hab_exp'
+        ));
+        if ($request->input('habilidades')) {
+            $exp = $request->input('hab_exp');
+            foreach ($request->input('habilidades') as $pos => $id) {
+                $perfil->habilidades()->attach($id, [
+                    'experiencia' => $exp[$pos],
+                ]);
+            }
+        }
+        return response()->json($perfil->load('habilidades'), 201);
     }
 
     /**
@@ -40,7 +51,7 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        return response()->json($perfil);
+        return response()->json($perfil->load('habilidades'));
     }
 
     /**
@@ -52,8 +63,22 @@ class PerfilController extends Controller
      */
     public function update(PerfilRequest $request, Perfil $perfil)
     {
-        $perfil->update($request->validated());
-        return response()->json($perfil, 200);
+        $perfil->update($request->except(
+            'habilidades',
+            'hab_exp'
+        ));
+
+        $perfil->habilidades()->detach();
+
+        if ($request->input('habilidades')) {
+            $exp = $request->input('hab_exp');
+            foreach ($request->input('habilidades') as $i => $id) {
+                $perfil->habilidades()->attach($id, [
+                    'experiencia' => $exp[$i],
+                ]);
+            }
+        }
+        return response()->json($perfil->load('habilidades'), 200);
     }
 
     /**

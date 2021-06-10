@@ -49,7 +49,6 @@ class OfertaRequest extends FormRequest
             'titulos.*' => 'distinct|exists:titulo_academico,id',
             'titulos_exp' => 'required_with:titulos|array',
             'titulos_exp.*' => 'nullable|integer',
-
         ];
     }
 }

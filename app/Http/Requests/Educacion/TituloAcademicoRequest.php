@@ -31,7 +31,7 @@ class TituloAcademicoRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^[A-zÀ-ú0-9.\s]+$/',
-                'size:50',
+                'max:100',
                 Rule::unique('titulo_academico')->ignore(
                     ($this->titulo_academico && $this->titulo_academico->nombre_titulo_ac == $this->nombre_titulo_ac) ?
                         $this->titulo_academico->id : null

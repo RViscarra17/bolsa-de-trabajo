@@ -14,9 +14,9 @@ class CreateIdiomaPerfilTable extends Migration
     public function up()
     {
         Schema::create('idioma_perfil', function (Blueprint $table) {
-            $table->primary(['id_idioma', 'id_perfil']);
-            $table->unsignedBigInteger('id_idioma');
-            $table->unsignedBigInteger('id_perfil');
+            $table->id();
+            $table->unsignedBigInteger('id_idioma')->unique();
+            $table->unsignedBigInteger('id_perfil')->unique();
             $table->timestamps();
 
             $table->foreign('id_idioma')->references('id')->on('idioma');

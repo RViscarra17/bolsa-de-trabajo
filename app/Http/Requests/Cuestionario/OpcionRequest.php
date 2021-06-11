@@ -28,10 +28,6 @@ class OpcionRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^[A-zÀ-ú0-9\s]+$/',
-                Rule::unique('opciones')->ignore(
-                    ($this->tipo && strcasecmp($this->tipo->nombre_opc, $this->nombre_opc) == 0) ?
-                        $this->tipo->id : null
-                )
             ],
         ];
     }

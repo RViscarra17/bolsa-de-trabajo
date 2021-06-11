@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Habilidad\HabilidadIdioma;
 use Illuminate\Database\Seeder;
 
 class HabilidadIdiomaSeeder extends Seeder
@@ -13,6 +14,20 @@ class HabilidadIdiomaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        HabilidadIdioma::create([
+            'nombre_hab_idioma' => 'Escritura',
+        ]);
+
+        HabilidadIdioma::create([
+            'nombre_hab_idioma' => 'Lectura',
+        ]);
+
+        HabilidadIdioma::create([
+            'nombre_hab_idioma' => 'Conversación',
+        ]);
+
+        HabilidadIdioma::create([
+            'nombre_hab_idioma' => 'Escucha',
+        ]);
     }
 }

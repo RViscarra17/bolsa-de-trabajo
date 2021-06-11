@@ -15,7 +15,13 @@ class CreateDetalleIdiomaPerfilTable extends Migration
     {
         Schema::create('detalle_idioma_perfil', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_hab_idioma');
+            $table->unsignedBigInteger('id_nivel_idioma');
+            $table->unsignedBigInteger('id_idioma_perfil');
+
+            $table->foreign('id_hab_idioma')->references('id')->on('habilidad_idioma');
+            $table->foreign('id_nivel_idioma')->references('id')->on('nivel_idioma');
+            $table->foreign('id_idioma_perfil')->references('id')->on('perfil')->onDelete('cascade');
         });
     }
 

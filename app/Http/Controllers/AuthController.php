@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\UsuarioRequest;
+use App\Models\Usuario\Rol;
 use App\Models\Usuario\Usuario;
+use App\Services\RolUsuarioService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
     public function register(UsuarioRequest $request)
     {
-        $usuario = Usuario::create($request->except('roles'));
+        DB::transaction(function () use ($request) {
+            $usuario = Usuario::create($request->except('roles'));
+            $usuario->syncRoles($request->input('id_tipo_usuario'));
+        });
 
-        return response()->json($usuario);
+        return response()->json(null, 201);
     }
 
     public function login(Request $request)

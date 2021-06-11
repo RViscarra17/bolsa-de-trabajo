@@ -28,7 +28,6 @@ class NivelAcademicoRequest extends FormRequest
             'nombre_nivel_ac' => [
                 'required',
                 'string',
-                'regex:/^[A-zÀ-ú0-9.\s]+$/',
                 'min:3',
                 'max:50',
                 Rule::unique('nivel_academico')->ignore(

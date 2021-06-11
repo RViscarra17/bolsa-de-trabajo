@@ -21,6 +21,6 @@ class Idioma extends Model
     {
         return $this->belongsToMany(Perfil::class, 'idioma_perfil', 'id_idioma', 'id_perfil')
             ->using(IdiomaPerfil::class)
-            ->as('aplicacion');
+            ->as('detalle');
     }
 }

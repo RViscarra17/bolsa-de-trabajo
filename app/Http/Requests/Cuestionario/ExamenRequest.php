@@ -25,15 +25,9 @@ class ExamenRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_exa' => [
-                'required',
-                'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
-                Rule::unique('examen')->ignore(
-                    ($this->tipo && strcasecmp($this->tipo->nombre_exa, $this->nombre_exa) == 0) ?
-                        $this->tipo->id : null
-                )
-            ],
+            'titulo_examen' => 'required|string|max:50',
+            'id_empresa' => 'exists:empresa,id',
+            'id_tipo_examen' => 'exists:empresa,id',
         ];
     }
 }

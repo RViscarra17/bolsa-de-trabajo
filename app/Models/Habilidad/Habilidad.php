@@ -17,6 +17,8 @@ class Habilidad extends Model
 
     protected $table = 'habilidad';
 
+    public $timestamps = false;
+
 
     public function categoria(): BelongsTo
     {

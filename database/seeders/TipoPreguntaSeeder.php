@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cuestionario\TipoPregunta;
 use Illuminate\Database\Seeder;
 
 class TipoPreguntaSeeder extends Seeder
@@ -13,6 +14,8 @@ class TipoPreguntaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        TipoPregunta::create(['nombre_tipo_pre' => 'Opción multiple']);
+        TipoPregunta::create(['nombre_tipo_pre' => 'Verdadero/Falso']);
+        TipoPregunta::create(['nombre_tipo_pre' => 'Multiple respuesta']);
     }
 }

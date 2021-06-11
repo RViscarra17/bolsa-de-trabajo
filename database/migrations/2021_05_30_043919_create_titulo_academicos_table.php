@@ -15,7 +15,7 @@ class CreateTituloAcademicosTable extends Migration
     {
         Schema::create('titulo_academico', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_titulo_ac',50);
+            $table->string('nombre_titulo_ac', 100);
             $table->unsignedBigInteger('id_cat_titulo');
             $table->timestamps();
             $table->foreign('id_cat_titulo')->references('id')->on('categoria_titulo')->onDelete('cascade');

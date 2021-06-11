@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Cuestionario;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Cuestionario\ResultadoExamenRequest;
 use Illuminate\Http\Request;
-use App\Models\Cuestionario\Resultado;
-use App\Http\Requests\Cuestionario\ResultadoRequest;
+use App\Models\Cuestionario\ResultadoExamen;
 
 class ResultadoExamenController extends Controller
 {
@@ -68,4 +68,3 @@ class ResultadoExamenController extends Controller
         return response()->json(null, 204);
     }
 }
-

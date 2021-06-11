@@ -15,98 +15,98 @@ class IdiomaSeeder extends Seeder
     public function run()
     {
         Idioma::create([
-            'codigo_idioma' => 'Español',
-            'nombre_idioma' => 'SPA',
+            'nombre_idioma' => 'Español',
+            'codigo_idioma' => 'SPA',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Inglés',
-            'nombre_idioma' => 'ENG',
+            'nombre_idioma' => 'Inglés',
+            'codigo_idioma' => 'ENG',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Francés',
-            'nombre_idioma' => 'FRA',
+            'nombre_idioma' => 'Francés',
+            'codigo_idioma' => 'FRA',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Portugués',
-            'nombre_idioma' => 'POR',
+            'nombre_idioma' => 'Portugués',
+            'codigo_idioma' => 'POR',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Italiano',
-            'nombre_idioma' => 'ITA',
+            'nombre_idioma' => 'Italiano',
+            'codigo_idioma' => 'ITA',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Alemán',
-            'nombre_idioma' => 'DEU',
+            'nombre_idioma' => 'Alemán',
+            'codigo_idioma' => 'DEU',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Japonés',
-            'nombre_idioma' => 'JPN',
+            'nombre_idioma' => 'Japonés',
+            'codigo_idioma' => 'JPN',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Coreano',
-            'nombre_idioma' => 'KOR',
+            'nombre_idioma' => 'Coreano',
+            'codigo_idioma' => 'KOR',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Tailandés',
-            'nombre_idioma' => 'THA',
+            'nombre_idioma' => 'Mandarín',
+            'codigo_idioma' => 'CNM',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Mandarín',
-            'nombre_idioma' => 'CNM',
+            'nombre_idioma' => 'Tailandés',
+            'codigo_idioma' => 'THA',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Hindi',
-            'nombre_idioma' => 'HIN',
+            'nombre_idioma' => 'Hindi',
+            'codigo_idioma' => 'HIN',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Ruso',
-            'nombre_idioma' => 'RUS',
+            'nombre_idioma' => 'Ruso',
+            'codigo_idioma' => 'RUS',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Holandés',
-            'nombre_idioma' => 'NLD',
+            'nombre_idioma' => 'Holandés',
+            'codigo_idioma' => 'NLD',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Sueco',
-            'nombre_idioma' => 'SWE',
+            'nombre_idioma' => 'Sueco',
+            'codigo_idioma' => 'SWE',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Afrikáans',
-            'nombre_idioma' => 'AFR',
+            'nombre_idioma' => 'Afrikáans',
+            'codigo_idioma' => 'AFR',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Griego',
-            'nombre_idioma' => 'ELL',
+            'nombre_idioma' => 'Griego',
+            'codigo_idioma' => 'ELL',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Indonesio',
-            'nombre_idioma' => 'IND',
+            'nombre_idioma' => 'Indonesio',
+            'codigo_idioma' => 'IND',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Hebreo',
-            'nombre_idioma' => 'HEB',
+            'nombre_idioma' => 'Hebreo',
+            'codigo_idioma' => 'HEB',
         ]);
 
         Idioma::create([
-            'codigo_idioma' => 'Árabe',
-            'nombre_idioma' => 'ARA',
+            'nombre_idioma' => 'Árabe',
+            'codigo_idioma' => 'ARA',
         ]);
     }
 }

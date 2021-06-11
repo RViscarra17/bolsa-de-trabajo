@@ -36,7 +36,7 @@ class UsuarioRequest extends FormRequest
                 Rule::unique('usuario')->ignore($this->usuario->id ?? null),
             ],
             'password' => 'sometimes|required|min:8|confirmed',
-            'id_tipo_usuario' => 'nullable|exists:tipo_usuario,id',
+            'id_tipo_usuario' => 'required|exists:tipo_usuario,id',
             'roles' => 'nullable|array',
             'roles.*' => 'exists:rol,id',
         ];

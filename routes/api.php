@@ -32,6 +32,7 @@ use App\Http\Controllers\Habilidad\NivelIdiomaController;
 use App\Http\Controllers\Habilidad\IdiomaController;
 use App\Http\Controllers\Habilidad\IdiomaPerfilController;
 use App\Http\Controllers\Laboral\ExperienciaLaboralController;
+use App\Http\Controllers\Laboral\PuestoController;
 use App\Http\Controllers\Oferta\AplicaController;
 use App\Http\Controllers\Oferta\EmpresaController;
 use App\Http\Controllers\Oferta\OfertaController;
@@ -63,7 +64,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('logout', [AuthController::class, 'logout']);
 
-    Route::group(['middleware' => 'is.admin'], function () {
+    Route::group(['middleware' => 'is.admin', 'prefix' => 'admin'], function () {
 
         //Roles
         Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
@@ -307,6 +308,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'delete'])->name('idiomas.delete');
 
+        //Puesto
+        Route::get('/puestos', [PuestoController::class, 'index'])->name('puestos.index');
+
+        Route::post('/puestos', [PuestoController::class, 'store'])->name('puestos.store');
+
+        Route::get('/puestos/{puesto}', [PuestoController::class, 'show'])->name('puestos.show');
+
+        Route::put('/puestos/{puesto}', [PuestoController::class, 'update'])->name('puestos.update');
+
+        Route::delete('/puestos/{puesto}', [PuestoController::class, 'delete'])->name('puestos.delete');
+
         //Usuarios
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
@@ -318,6 +330,51 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'delete'])->name('usuarios.delete');
     });
+
+    /*Rutas para formularios*/
+
+    //Registro de perfil
+    Route::get('/cat-habilidad', [CategoriaHabilidadController::class, 'index'])->name('cat-habilidad.index');
+
+    //Registro de empresa
+    Route::get('/sectores', [SectorController::class, 'index'])->name('sectores.index');
+
+    //Registro de oferta
+    Route::get('/cat-titulo', [CategoriaTituloController::class, 'index'])->name('cat-titulo.index');
+    Route::get('/titulos-academicos', [TituloAcademicoController::class, 'index'])->name('titulos-academicos.index');
+    Route::get('/cat-habilidad', [CategoriaHabilidadController::class, 'index'])->name('cat-habilidad.index');
+    Route::get('/habilidades', [HabilidadController::class, 'index'])->name('habilidades.index');
+
+    //Direcciones
+    Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
+    Route::get('/estados', [EstadoController::class, 'index'])->name('estados.index');
+    Route::get('/ciudades', [CiudadController::class, 'index'])->name('ciudades.index');
+
+    //Redes sociales
+    Route::get('/redes', [RedSocialController::class, 'index'])->name('redes.index');
+
+    //Conocimientos
+    Route::get('/nivel-ac', [NivelAcademicoController::class, 'index'])->name('nivel-ac.index');
+
+    //Certificaciones
+    Route::get('/tipo-cert', [TipoCertificacionController::class, 'index'])->name('tipo-cert.index');
+    Route::get('/instituciones-cert', [InstitucionCertificadoraController::class, 'index'])->name('instituciones-cert.index');
+
+    //Logros
+    Route::get('/tipo-logro', [TipoLogroController::class, 'index'])->name('tipo-logro.index');
+
+    //Experiencia laboral
+    Route::get('/cat-puesto', [CategoriaPuestoController::class, 'index'])->name('cat-puesto.index');
+    Route::get('/puestos', [PuestoController::class, 'index'])->name('puestos.index');
+
+    //Idiomas
+    Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
+
+    //Cuestionario
+    Route::get('/tipo-pregunta', [TipoPreguntaController::class, 'index'])->name('tipo-pregunta.index');
+    Route::get('/tipo-examen', [TipoExamenController::class, 'index'])->name('tipo-examen.index');
+
+
     /*Usuario*/
 
     //Telefonos
@@ -488,6 +545,39 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/ofertas/{oferta}', [OfertaController::class, 'update'])->name('ofertas.update');
 
     Route::delete('/ofertas/{oferta}', [OfertaController::class, 'delete'])->name('ofertas.delete');
+
+    //Examenes
+    Route::get('/examenes', [ExamenController::class, 'index'])->name('examenes.index');
+
+    Route::post('/examenes', [ExamenController::class, 'store'])->name('examenes.store');
+
+    Route::get('/examenes/{examen}', [ExamenController::class, 'show'])->name('examenes.show');
+
+    Route::put('/examenes/{examen}', [ExamenController::class, 'update'])->name('examenes.update');
+
+    Route::delete('/examenes/{examen}', [ExamenController::class, 'destroy'])->name('examenes.destroy');
+
+    //Examen oferta
+    Route::get('/examen-oferta', [ExamenController::class, 'index'])->name('examen-oferta.index');
+
+    Route::post('/examen-oferta', [ExamenController::class, 'store'])->name('examen-oferta.store');
+
+    Route::get('/examen-oferta/{examenOferta}', [ExamenController::class, 'show'])->name('examen-oferta.show');
+
+    Route::put('/examen-oferta/{examenOferta}', [ExamenController::class, 'update'])->name('examen-oferta.update');
+
+    Route::delete('/examen-oferta/{examenOferta}', [ExamenController::class, 'destroy'])->name('examen-oferta.destroy');
+
+    //Resultado Examen
+    Route::get('/resultado-examen', [ExamenController::class, 'index'])->name('resultado-examen.index');
+
+    Route::post('/resultado-examen', [ExamenController::class, 'store'])->name('resultado-examen.store');
+
+    Route::get('/resultado-examen/{resultadoExamen}', [ExamenController::class, 'show'])->name('resultado-examen.show');
+
+    Route::put('/resultado-examen/{resultadoExamen}', [ExamenController::class, 'update'])->name('resultado-examen.update');
+
+    Route::delete('/resultado-examen/{resultadoExamen}', [ExamenController::class, 'destroy'])->name('resultado-examen.destroy');
 
     //Utilidades
     Route::get('/utilidades/permisos', [UtilidadesController::class, 'permisos']);

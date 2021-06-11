@@ -28,10 +28,6 @@ class PreguntaRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^[A-zÀ-ú0-9\s]+$/',
-                Rule::unique('pregunta')->ignore(
-                    ($this->tipo && strcasecmp($this->tipo->nombre_pre, $this->nombre_pre) == 0) ?
-                        $this->tipo->id : null
-                )
             ],
         ];
     }

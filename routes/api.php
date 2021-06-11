@@ -39,7 +39,7 @@ use App\Http\Controllers\Perfil\PerfilController;
 use App\Http\Controllers\Ubicacion\DireccionController;
 use App\Http\Controllers\Usuario\UsuarioController;
 use App\Http\Controllers\Utilidades\UtilidadesController;
-use App\Http\Controllers\Usuario\UsuarioController;
+// use App\Http\Controllers\Usuario\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -275,7 +275,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'update'])->name('titulos-academicos.update');
 
-        Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'delete'])->name('titulos-academicos.delete');
+        Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'delete'])->name('titulos-academicos.destroy');
 
         //Habilidad
         Route::get('/habilidades', [HabilidadController::class, 'index'])->name('habilidades.index');
@@ -286,7 +286,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/habilidades/{habilidad}', [HabilidadController::class, 'update'])->name('habilidades.update');
 
-        Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'delete'])->name('habilidades.delete');
+        Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'destroy'])->name('habilidades.delete');
 
         //Nivel Idioma
         Route::get('/nivel-idiomas', [NivelIdiomaController::class, 'index'])->name('nivel-idiomas.index');
@@ -297,7 +297,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'update'])->name('nivel-idiomas.update');
 
-        Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'delete'])->name('nivel-idiomas.delete');
+        Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'destroy'])->name('nivel-idiomas.delete');
 
         //Idioma
         Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
@@ -308,7 +308,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/idiomas/{idioma}', [IdiomaController::class, 'update'])->name('idiomas.update');
 
-        Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'delete'])->name('idiomas.delete');
+        Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'destroy'])->name('idiomas.delete');
 
         //Usuarios
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
@@ -319,7 +319,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
 
-        Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'delete'])->name('usuarios.delete');
+        Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.delete');
     });
     /*Usuario*/
 
@@ -358,7 +358,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/logros/{logro}', [LogroController::class, 'update'])->name('logros.update');
 
-    Route::delete('/logros/{logro}', [LogroController::class, 'delete'])->name('logros.delete');
+    Route::delete('/logros/{logro}', [LogroController::class, 'destroy'])->name('logros.delete');
 
     //Recomendaciones
     Route::get('/recomendaciones', [RecomendacionController::class, 'index'])->name('recomendaciones.index');
@@ -369,7 +369,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'update'])->name('recomendaciones.update');
 
-    Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'delete'])->name('recomendaciones.delete');
+    Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'destroy'])->name('recomendaciones.delete');
 
     //Publicaciones
     Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
@@ -380,7 +380,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/publicaciones/{publicacion}', [PublicacionController::class, 'update'])->name('publicaciones.update');
 
-    Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'delete'])->name('publicaciones.delete');
+    Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'destroy'])->name('publicaciones.delete');
 
     //Eventos
     Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
@@ -391,7 +391,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
 
-    Route::delete('/eventos/{evento}', [EventoController::class, 'delete'])->name('eventos.delete');
+    Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.delete');
 
     //Certificación
     Route::get('/certificaciones', [CertificacionController::class, 'index'])->name('certificaciones.index');
@@ -402,7 +402,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/certificaciones/{certificacion}', [CertificacionController::class, 'update'])->name('certificaciones.update');
 
-    Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'delete'])->name('certificaciones.delete');
+    Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'destroy'])->name('certificaciones.delete');
 
     //Conocimiento
     Route::get('/conocimientos', [ConocimientoController::class, 'index'])->name('conocimientos.index');
@@ -413,7 +413,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/conocimientos/{conocimiento}', [ConocimientoController::class, 'update'])->name('conocimientos.update');
 
-    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'delete'])->name('conocimientos.delete');
+    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimientos.delete');
 
     //Idiomas
     Route::get('/idiomas-perfil', [IdiomaPerfilController::class, 'index'])->name('idioma-perfil.index');
@@ -424,7 +424,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/idiomas-perfil/{perfil}', [IdiomaPerfilController::class, 'update'])->name('idioma-perfil.update');
 
-    Route::delete('/idiomas-perfil/{perfil}/idioma/{idioma}', [IdiomaPerfilController::class, 'delete'])->name('idioma-perfil.delete');
+    Route::delete('/idiomas-perfil/{perfil}/idioma/{idioma}', [IdiomaPerfilController::class, 'destroy'])->name('idioma-perfil.delete');
 
     //Usuario
     Route::get('/laborales', [ExperienciaLaboralController::class, 'index'])->name('laborales.index');
@@ -435,7 +435,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'update'])->name('laborales.update');
 
-    Route::delete('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'delete'])->name('laborales.delete');
+    Route::delete('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'destroy'])->name('laborales.delete');
 
     //Direccion
     Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index');
@@ -446,7 +446,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/direcciones/{direccion}', [DireccionController::class, 'update'])->name('direcciones.update');
 
-    Route::delete('/direcciones/{direccion}', [DireccionController::class, 'delete'])->name('direcciones.delete');
+    Route::delete('/direcciones/{direccion}', [DireccionController::class, 'destroy'])->name('direcciones.delete');
 
     //Aplicacion a ofertas (Solo para los postulantes)
     Route::get('/aplicacion', [AplicaController::class, 'index'])->name('aplicacion.index');
@@ -457,7 +457,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/aplicacion/{oferta}', [AplicaController::class, 'update'])->name('aplicacion.update');
 
-    Route::delete('/aplicacion/{oferta}', [AplicaController::class, 'delete'])->name('aplicacion.delete');
+    Route::delete('/aplicacion/{oferta}', [AplicaController::class, 'destroy'])->name('aplicacion.delete');
 
     //Perfiles
     Route::get('/perfiles', [PerfilController::class, 'index'])->name('perfiles.index');
@@ -468,7 +468,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/perfiles/{perfil}', [PerfilController::class, 'update'])->name('perfiles.update');
 
-    Route::delete('/perfiles/{perfil}', [PerfilController::class, 'delete'])->name('perfiles.delete');
+    Route::delete('/perfiles/{perfil}', [PerfilController::class, 'destroy'])->name('perfiles.delete');
 
     //Empresas
     Route::get('/empresas', [EmpresaController::class, 'index'])->name('empresas.index');
@@ -479,7 +479,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update');
 
-    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'delete'])->name('empresas.delete');
+    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.delete');
 
     //Ofertas
     Route::get('/ofertas', [OfertaController::class, 'index'])->name('ofertas.index');
@@ -490,7 +490,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/ofertas/{oferta}', [OfertaController::class, 'update'])->name('ofertas.update');
 
-    Route::delete('/ofertas/{oferta}', [OfertaController::class, 'delete'])->name('ofertas.delete');
+    Route::delete('/ofertas/{oferta}', [OfertaController::class, 'destroy'])->name('ofertas.delete');
 
     //Utilidades
     Route::get('/utilidades/permisos', [UtilidadesController::class, 'permisos']);

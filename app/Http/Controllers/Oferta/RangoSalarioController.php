@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Oferta;
 
-use App\Models\Oferta\Aplica;
+use App\Models\Oferta\RangoSalario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Oferta\AplicacionRequest;
-use App\Models\Oferta\Oferta;
 
-class AplicaController extends Controller
+class RangoSalarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,7 @@ class AplicaController extends Controller
      */
     public function index()
     {
-        $ofertas =  Oferta::with('usuarios.perfiles')->toArray();
-        return response()->json($ofertas);
+        //
     }
 
     /**
@@ -27,31 +24,30 @@ class AplicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AplicacionRequest $request)
+    public function store(Request $request)
     {
-        Aplica::create($request->validated());
-        return response()->json(['message' => 'Se ha postulado exitosamente'], 201);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Aplica  $aplica
+     * @param  \App\Models\RangoSalario  $rangoSalario
      * @return \Illuminate\Http\Response
      */
-    public function show(Aplica $aplica)
+    public function show(RangoSalario $rangoSalario)
     {
-        return response()->json($aplica);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aplica  $aplica
+     * @param  \App\Models\RangoSalario  $rangoSalario
      * @return \Illuminate\Http\Response
      */
-    public function update(AplicacionRequest $request, Aplica $aplica)
+    public function update(Request $request, RangoSalario $rangoSalario)
     {
         //
     }
@@ -59,12 +55,11 @@ class AplicaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aplica  $aplica
+     * @param  \App\Models\RangoSalario  $rangoSalario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aplica $aplica)
+    public function destroy(RangoSalario $rangoSalario)
     {
-        $aplica->delete();
-        return response()->json(null, 204);
+        //
     }
 }

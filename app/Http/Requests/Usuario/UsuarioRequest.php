@@ -37,6 +37,8 @@ class UsuarioRequest extends FormRequest
             ],
             'password' => 'sometimes|required|min:8|confirmed',
             'id_tipo_usuario' => 'required|exists:tipo_usuario,id',
+            'bloqueado' => 'nullable|boolean',
+            'activo' => 'nullable|boolean',
             'roles' => 'nullable|array',
             'roles.*' => 'exists:rol,id',
         ];

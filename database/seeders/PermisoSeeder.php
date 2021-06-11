@@ -43,5 +43,11 @@ class PermisoSeeder extends Seeder
             'name' => 'test_5',
             'descripcion' => 'pruebas',
         ]);
+
+        Permiso::create([
+            'display_name' => 'test5',
+            'name' => 'test_5',
+            'descripcion' => 'pruebas',
+        ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Usuario\TipoUsuario;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermisoSeeder::class,
             RolSeeder::class,
-            TipoUsuario::class,
+            TipoUsuarioSeeder::class,
             RedSocialSeeder::class,
             PaisSeeder::class,
             TipoLogroSeeder::class,

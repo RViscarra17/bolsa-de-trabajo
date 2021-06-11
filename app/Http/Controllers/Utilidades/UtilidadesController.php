@@ -28,7 +28,7 @@ class UtilidadesController extends Controller
             'data' =>
             [
                 'nombre' => $usuario->nombres . ' ' . $usuario->apellidos,
-                'tipo' => $usuario->tipo->nombre_tipo_usuario,
+                'tipo' => $usuario->tipo->nombre_tipo_usuario ?? 'Ninguno',
             ]
         ], 200);
     }

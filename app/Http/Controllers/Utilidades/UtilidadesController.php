@@ -27,6 +27,7 @@ class UtilidadesController extends Controller
         return response()->json([
             'data' =>
             [
+                'id' => $usuario->id,
                 'nombre' => $usuario->nombres . ' ' . $usuario->apellidos,
                 'tipo' => $usuario->tipo->nombre_tipo_usuario ?? 'Ninguno',
             ]

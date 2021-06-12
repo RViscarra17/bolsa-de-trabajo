@@ -14,7 +14,7 @@ use App\Http\Controllers\Usuario\RedSocialController;
 use App\Http\Controllers\Usuario\TelefonoController;
 use App\Http\Controllers\Usuario\RedUsuarioController;
 use App\Http\Controllers\Oferta\SectorController;
-use App\Http\Controllers\Oferta\CategoriaPuestoController;
+use App\Http\Controllers\Laboral\CategoriaPuestoController;
 use App\Http\Controllers\Otro\TipoLogroController;
 use App\Http\Controllers\Otro\LogroController;
 use App\Http\Controllers\Otro\RecomendacionController;

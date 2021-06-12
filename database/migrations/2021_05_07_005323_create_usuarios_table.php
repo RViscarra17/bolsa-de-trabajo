@@ -26,8 +26,10 @@ class CreateUsuariosTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('id_tipo_usuario')->nullable();
+            $table->unsignedBigInteger('id_pais')->nullable();
 
             $table->foreign('id_tipo_usuario')->references('id')->on('tipo_usuario');
+            $table->foreign('id_pais')->references('id')->on('pais');
         });
     }
 

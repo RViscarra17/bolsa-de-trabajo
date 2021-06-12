@@ -268,7 +268,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'update'])->name('instituciones-cert.update');
 
-        Route::delete('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'delete'])->name('instituciones-cert.delete');
+        Route::delete('/instituciones-cert/{institucionCertificadora}', [InstitucionCertificadoraController::class, 'destroy'])->name('instituciones-cert.delete');
 
         //Titulo Academico
         Route::get('/titulos-academicos', [TituloAcademicoController::class, 'index'])->name('titulos-academicos.index');
@@ -279,7 +279,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'update'])->name('titulos-academicos.update');
 
-        Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'delete'])->name('titulos-academicos.delete');
+        Route::delete('/titulos-academicos/{tituloAcademico}', [TituloAcademicoController::class, 'destroy'])->name('titulos-academicos.delete');
 
         //Habilidad
         Route::get('/habilidades', [HabilidadController::class, 'index'])->name('habilidades.index');
@@ -290,7 +290,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/habilidades/{habilidad}', [HabilidadController::class, 'update'])->name('habilidades.update');
 
-        Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'delete'])->name('habilidades.delete');
+        Route::delete('/habilidades/{habilidad}', [HabilidadController::class, 'destroy'])->name('habilidades.delete');
 
         //Nivel Idioma
         Route::get('/nivel-idiomas', [NivelIdiomaController::class, 'index'])->name('nivel-idiomas.index');
@@ -301,7 +301,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'update'])->name('nivel-idiomas.update');
 
-        Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'delete'])->name('nivel-idiomas.delete');
+        Route::delete('/nivel-idiomas/{nivel_idioma}', [NivelIdiomaController::class, 'destroy'])->name('nivel-idiomas.delete');
 
         //Idioma
         Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
@@ -312,7 +312,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/idiomas/{idioma}', [IdiomaController::class, 'update'])->name('idiomas.update');
 
-        Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'delete'])->name('idiomas.delete');
+        Route::delete('/idiomas/{idioma}', [IdiomaController::class, 'destroy'])->name('idiomas.delete');
 
         //Puesto
         Route::get('/puestos', [PuestoController::class, 'index'])->name('puestos.index');
@@ -323,7 +323,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/puestos/{puesto}', [PuestoController::class, 'update'])->name('puestos.update');
 
-        Route::delete('/puestos/{puesto}', [PuestoController::class, 'delete'])->name('puestos.delete');
+        Route::delete('/puestos/{puesto}', [PuestoController::class, 'destroy'])->name('puestos.delete');
 
         //Usuarios
         Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
@@ -334,7 +334,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
 
-        Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'delete'])->name('usuarios.delete');
+        Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.delete');
     });
 
     /*Rutas para formularios*/
@@ -431,7 +431,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/logros/{logro}', [LogroController::class, 'update'])->name('logros.update')
         ->middleware('can:modificar-logros');
 
-    Route::delete('/logros/{logro}', [LogroController::class, 'delete'])->name('logros.delete')
+    Route::delete('/logros/{logro}', [LogroController::class, 'destroy'])->name('logros.delete')
         ->middleware('can:eliminar-logros');
 
     //Recomendaciones
@@ -447,7 +447,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'update'])->name('recomendaciones.update')
         ->middleware('can:modificar-recomendaciones');
 
-    Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'delete'])->name('recomendaciones.delete')
+    Route::delete('/recomendaciones/{recomendacion}', [RecomendacionController::class, 'destroy'])->name('recomendaciones.delete')
         ->middleware('can:eliminar-recomendaciones');
 
     //Publicaciones
@@ -463,7 +463,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/publicaciones/{publicacion}', [PublicacionController::class, 'update'])->name('publicaciones.update')
         ->middleware('can:modificar-publicaciones');
 
-    Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'delete'])->name('publicaciones.delete')
+    Route::delete('/publicaciones/{publicacion}', [PublicacionController::class, 'destroy'])->name('publicaciones.delete')
         ->middleware('can:eliminar-publicaciones');
 
     //Eventos
@@ -479,7 +479,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update')
         ->middleware('can:modificar-eventos');
 
-    Route::delete('/eventos/{evento}', [EventoController::class, 'delete'])->name('eventos.delete')
+    Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.delete')
         ->middleware('can:eliminar-eventos');
 
     //Certificación
@@ -495,7 +495,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/certificaciones/{certificacion}', [CertificacionController::class, 'update'])->name('certificaciones.update')
         ->middleware('can:modificar-certificaciones');
 
-    Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'delete'])->name('certificaciones.delete')
+    Route::delete('/certificaciones/{certificacion}', [CertificacionController::class, 'destroy'])->name('certificaciones.delete')
         ->middleware('can:eliminar-certificaciones');
 
     //Conocimiento
@@ -511,7 +511,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/conocimientos/{conocimiento}', [ConocimientoController::class, 'update'])->name('conocimientos.update')
         ->middleware('can:modificar-conocimientos');
 
-    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'delete'])->name('conocimientos.delete')
+    Route::delete('/conocimientos/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimientos.delete')
         ->middleware('can:eliminar-conocimientos');
 
     //Idiomas
@@ -527,7 +527,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/idiomas-perfil/{perfil}', [IdiomaPerfilController::class, 'update'])->name('idioma-perfil.update')
         ->middleware('can:modificar-idiomas');
 
-    Route::delete('/idiomas-perfil/{perfil}/idioma/{idioma}', [IdiomaPerfilController::class, 'delete'])->name('idioma-perfil.delete')
+    Route::delete('/idiomas-perfil/{perfil}/idioma/{idioma}', [IdiomaPerfilController::class, 'destroy'])->name('idioma-perfil.delete')
         ->middleware('can:eliminar-idiomas');
 
     //Experiencia laboral
@@ -543,7 +543,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'update'])->name('laborales.update')
         ->middleware('can:modificar-experiencia');
 
-    Route::delete('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'delete'])->name('laborales.delete')
+    Route::delete('/laborales/{experiencia}', [ExperienciaLaboralController::class, 'destroy'])->name('laborales.delete')
         ->middleware('can:eliminar-experiencia');
 
     //Direcciones
@@ -559,7 +559,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/direcciones/{direccion}', [DireccionController::class, 'update'])->name('direcciones.update')
         ->middleware('can:modificar-direccion');
 
-    Route::delete('/direcciones/{direccion}', [DireccionController::class, 'delete'])->name('direcciones.delete')
+    Route::delete('/direcciones/{direccion}', [DireccionController::class, 'destroy'])->name('direcciones.delete')
         ->middleware('can:eliminar-direccion');
 
     //Aplicacion a ofertas (Solo para los postulantes)
@@ -575,7 +575,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/aplicacion/{oferta}', [AplicaController::class, 'update'])->name('aplicacion.update')
         ->middleware('can:modificar-aplicacion');
 
-    Route::delete('/aplicacion/{oferta}', [AplicaController::class, 'delete'])->name('aplicacion.delete')
+    Route::delete('/aplicacion/{oferta}', [AplicaController::class, 'destroy'])->name('aplicacion.delete')
         ->middleware('can:eliminar-aplicacion');
 
     //Perfiles
@@ -591,7 +591,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/perfiles/{perfil}', [PerfilController::class, 'update'])->name('perfiles.update')
         ->middleware('can:modificar-perfil');
 
-    Route::delete('/perfiles/{perfil}', [PerfilController::class, 'delete'])->name('perfiles.delete')
+    Route::delete('/perfiles/{perfil}', [PerfilController::class, 'destroy'])->name('perfiles.delete')
         ->middleware('can:eliminar-perfil');
 
     //Empresas
@@ -607,7 +607,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update')
         ->middleware('can:modificar-empresa');
 
-    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'delete'])->name('empresas.delete')
+    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.delete')
         ->middleware('can:eliminar-empresa');
 
     //Ofertas
@@ -623,7 +623,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/ofertas/{oferta}', [OfertaController::class, 'update'])->name('ofertas.update')
         ->middleware('can:modificar-ofertas');
 
-    Route::delete('/ofertas/{oferta}', [OfertaController::class, 'delete'])->name('ofertas.delete')
+    Route::delete('/ofertas/{oferta}', [OfertaController::class, 'destroy'])->name('ofertas.delete')
         ->middleware('can:eliminar-oferta');
 
     //Examenes

@@ -26,7 +26,7 @@ class TipoUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TipoUsuarioRequest $request)
+    public function store(Request $request)
     {
         $tipo = TipoUsuario::create($request->validated());
         return response()->json($tipo, 201);
@@ -50,7 +50,7 @@ class TipoUsuarioController extends Controller
      * @param  \App\Models\TipoUsuario  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function update(TipoUsuarioRequest $request, TipoUsuario $tipo)
+    public function update(Request $request, TipoUsuario $tipo)
     {
         $tipo->update($request->validated());
         return response()->json($tipo, 200);

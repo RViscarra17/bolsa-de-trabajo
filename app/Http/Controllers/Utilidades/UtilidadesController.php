@@ -23,14 +23,23 @@ class UtilidadesController extends Controller
     public function usuario()
     {
         $usuario = auth()->user();
+        $data = array();
+        $data =  [
+            'id' => $usuario->id,
+            'nombre' => $usuario->nombres . ' ' . $usuario->apellidos,
+            'tipo' => $usuario->tipo->nombre_tipo_usuario ?? 'Ninguno',
+        ];
+
+        if (!$usuario->es_admin) {
+            if ($id_empresa = $usuario->empresa->id ?? null) {
+                $data['id_empresa'] = $id_empresa;
+            } elseif ($id_perfil = $usuario->perfil->id ?? null) {
+                $data['id_perfil'] = $id_perfil;
+            }
+        }
 
         return response()->json([
-            'data' =>
-            [
-                'id' => $usuario->id,
-                'nombre' => $usuario->nombres . ' ' . $usuario->apellidos,
-                'tipo' => $usuario->tipo->nombre_tipo_usuario ?? 'Ninguno',
-            ]
+            'data' => $data,
         ], 200);
     }
 

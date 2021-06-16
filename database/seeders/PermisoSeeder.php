@@ -14,7 +14,7 @@ class PermisoSeeder extends Seeder
      */
     public function run()
     {
-        //Telefonos
+        //Telefonos 
         Permiso::create([
             'display_name' => 'Consultar telefonos',
             'name' => 'consultar-telefonos',
@@ -22,7 +22,7 @@ class PermisoSeeder extends Seeder
         ]);
 
         Permiso::create([
-            'display_name' => 'Registrar ',
+            'display_name' => 'Registrar telefonos',
             'name' => 'registrar-telefonos',
             'descripcion' => 'Permite registrar un  en el sistema',
         ]);
@@ -44,6 +44,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-telefonos',
             'descripcion' => 'Permite eliminar un  en el sistema',
         ]);
+        //5
 
         //Logros
         Permiso::create([
@@ -75,6 +76,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-logros',
             'descripcion' => 'Permite eliminar un logro en el sistema',
         ]);
+        //10
 
         //Redes sociales
         Permiso::create([
@@ -106,6 +108,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-redes',
             'descripcion' => 'Permite eliminar una red social en el sistema',
         ]);
+        //15
 
         //Recomendaciones
         Permiso::create([
@@ -137,6 +140,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-recomendaciones',
             'descripcion' => 'Permite eliminar una recomendación en el sistema',
         ]);
+        //20
 
         //Publicaciones
         Permiso::create([
@@ -168,6 +172,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-publicaciones',
             'descripcion' => 'Permite eliminar una publicación en el sistema',
         ]);
+        //25
 
         //Eventos
         Permiso::create([
@@ -199,6 +204,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-eventos',
             'descripcion' => 'Permite eliminar un evento en el sistema',
         ]);
+        //30
 
         //Certificaciones
         Permiso::create([
@@ -230,6 +236,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-certificaciones',
             'descripcion' => 'Permite eliminar una certificación  en el sistema',
         ]);
+        //35
 
         //Conocimientos
         Permiso::create([
@@ -261,6 +268,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-conocimientos',
             'descripcion' => 'Permite eliminar un conocimiento en el sistema',
         ]);
+        //40
 
         //Idiomas
         Permiso::create([
@@ -292,6 +300,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-idiomas',
             'descripcion' => 'Permite eliminar un idioma en el sistema',
         ]);
+        //45
 
         //Experiencia laboral
         Permiso::create([
@@ -323,6 +332,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-experiencia',
             'descripcion' => 'Permite eliminar una experiencia laboral en el sistema',
         ]);
+        //50
 
         //Direcciones
         Permiso::create([
@@ -354,6 +364,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-direccion',
             'descripcion' => 'Permite eliminar una direccion en el sistema',
         ]);
+        //55
 
         //Aplicacion a ofertas
         Permiso::create([
@@ -385,6 +396,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-aplicacion',
             'descripcion' => 'Permite eliminar a un postulante de la la oferta de trabajo',
         ]);
+        //60
 
         //Perfiles
         Permiso::create([
@@ -416,6 +428,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-perfil',
             'descripcion' => 'Permite eliminar un perfil en el sistema',
         ]);
+        //65
 
         //Empresas
         Permiso::create([
@@ -447,6 +460,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-empresa',
             'descripcion' => 'Permite eliminar una empresa en el sistema',
         ]);
+        //70
 
         //Ofertas
         Permiso::create([
@@ -478,6 +492,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-ofertas',
             'descripcion' => 'Permite eliminar una oferta en el sistema',
         ]);
+        //75
 
         //Examenes
         Permiso::create([
@@ -509,6 +524,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-examenes',
             'descripcion' => 'Permite eliminar un examen en el sistema',
         ]);
+        //80
 
         //Examen Oferta
         Permiso::create([
@@ -540,6 +556,7 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-asignacion-examen',
             'descripcion' => 'Permite eliminar un examen de una oferta',
         ]);
+        //85
 
         //Resultado examen
         Permiso::create([
@@ -559,6 +576,7 @@ class PermisoSeeder extends Seeder
             'name' => 'ver-resultado-examen',
             'descripcion' => 'Permite ver el detalle/resultado de un examen en el sistema',
         ]);
+        //88
 
         //No se utiliza
         Permiso::create([
@@ -572,5 +590,6 @@ class PermisoSeeder extends Seeder
             'name' => 'eliminar-resultado-examen',
             'descripcion' => 'Permite eliminar el resultado de un examen en el sistema',
         ]);
+        //90
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Oferta\Empresa;
 use App\Models\Oferta\Oferta;
 use App\Models\Perfil\Perfil;
 use App\Models\Ubicacion\Direccion;
+use App\Models\Ubicacion\Pais;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -85,6 +86,11 @@ class Usuario extends Authenticatable
     public function tipo(): BelongsTo
     {
         return $this->belongsTo(TipoUsuario::class, 'id_tipo_usuario');
+    }
+
+    public function pais(): BelongsTo
+    {
+        return $this->belongsTo(Pais::class, 'id_pais');
     }
 
     public function redes(): BelongsToMany

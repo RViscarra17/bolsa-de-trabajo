@@ -4,6 +4,7 @@ namespace App\Models\Ubicacion;
 
 use App\Models\Otro\Evento;
 use App\Models\Usuario\Telefono;
+use App\Models\Usuario\Usuario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,5 +33,10 @@ class Pais extends Model
     public function eventos(): HasMany
     {
         return $this->hasMany(Evento::class, 'id_pais');
+    }
+
+    public function usuarios(): HasMany
+    {
+        return $this->hasMany(Usuario::class, 'id_pais');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Usuario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class TelefonoRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class TelefonoRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-telefonos') || $this->user()->can('modificar-telefonos')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

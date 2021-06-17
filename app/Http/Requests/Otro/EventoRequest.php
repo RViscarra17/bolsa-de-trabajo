@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Otro;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class EventoRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class EventoRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-eventos') || $this->user()->can('modificar-eventos')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

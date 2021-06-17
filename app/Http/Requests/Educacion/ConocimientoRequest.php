@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Educacion;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class ConocimientoRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class ConocimientoRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-conocimientos') || $this->user()->can('modificar-conocimientos')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

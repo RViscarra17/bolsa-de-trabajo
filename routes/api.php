@@ -650,7 +650,7 @@ Route::group(['middleware' => ['cors']], function () {
             ->middleware('can:registrar-asignacion-examen');
 
         Route::get('/examen-oferta/{examenOferta}', [ExamenOfertaController::class, 'show'])->name('examen-oferta.show')
-            ->middleware('can:ver-asignar-examen');
+            ->middleware('can:ver-asignacion-examen');
 
         Route::put('/examen-oferta/{examenOferta}', [ExamenOfertaController::class, 'update'])->name('examen-oferta.update')
             ->middleware('can:modificar-asignacion-examen');

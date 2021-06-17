@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Usuario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class RedUsuarioRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class RedUsuarioRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-redes') || $this->user()->can('modificar-redes')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

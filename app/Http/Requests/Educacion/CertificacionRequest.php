@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Educacion;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class CertificacionRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class CertificacionRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-cetificaciones') || $this->user()->can('modificar-cetificaciones')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

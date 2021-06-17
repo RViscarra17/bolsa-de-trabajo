@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Perfil;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class PerfilRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class PerfilRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-perfil') || $this->user()->can('modificar-perfil')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

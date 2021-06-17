@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Oferta;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class OfertaRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class OfertaRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-ofertas') || $this->user()->can('modificar-ofertas')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 
@@ -36,7 +43,7 @@ class OfertaRequest extends FormRequest
             'viajar' => 'nullable|boolean',
             'vehiculo' => 'nullable|boolean',
             'cambio_residencia' => 'nullable|boolean',
-            'id_empresa' => 'required|exists:empresa,id',
+            'id_oferta' => 'required|exists:oferta,id',
             'id_puesto' => 'required|exists:puesto,id',
             'id_ciudad' => 'required|exists:ciudad,id',
             //Array de IDs de las hobilidades y su experiencia (en años)

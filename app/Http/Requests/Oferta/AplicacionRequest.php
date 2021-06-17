@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Oferta;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class AplicacionRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class AplicacionRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-aplicacion') || $this->user()->can('modificar-aplicacion')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

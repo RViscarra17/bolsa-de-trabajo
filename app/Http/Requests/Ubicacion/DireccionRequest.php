@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Ubicacion;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class DireccionRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class DireccionRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-direccion') || $this->user()->can('modificar-direccion')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

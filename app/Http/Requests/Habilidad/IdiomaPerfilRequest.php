@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Habilidad;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class IdiomaPerfilRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class IdiomaPerfilRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-idiomas') || $this->user()->can('modificar-idiomas')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

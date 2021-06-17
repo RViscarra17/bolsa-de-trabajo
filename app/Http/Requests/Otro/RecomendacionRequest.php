@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Otro;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class RecomendacionRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class RecomendacionRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-recomendaciones') || $this->user()->can('modificar-recomendaciones')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

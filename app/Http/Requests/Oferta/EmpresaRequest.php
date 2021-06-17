@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Oferta;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class EmpresaRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class EmpresaRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-empresa') || $this->user()->can('modificar-empresa')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

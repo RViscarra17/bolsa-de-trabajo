@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Laboral;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 class ExperienciaLaboralRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class ExperienciaLaboralRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-experiencia') || $this->user()->can('modificar-experiencia')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

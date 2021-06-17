@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Cuestionario;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 class ExamenRequest extends FormRequest
@@ -14,6 +15,12 @@ class ExamenRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_unless(
+            ($this->user()->can('registrar-examenes') || $this->user()->can('modificar-examenes')),
+            Response::HTTP_FORBIDDEN,
+            'No tiene permiso para realizar esta acción'
+        );
+
         return true;
     }
 

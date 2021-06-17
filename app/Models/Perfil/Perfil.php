@@ -6,7 +6,7 @@ use App\Models\Educacion\Certificacion;
 use App\Models\Educacion\Conocimiento;
 use App\Models\Habilidad\Habilidad;
 use App\Models\Habilidad\Idioma;
-use App\Models\IdiomaPerfil;
+use App\Models\Habilidad\IdiomaPerfil;
 use App\Models\Laboral\ExperienciaLaboral;
 use App\Models\Otro\Evento;
 use App\Models\Otro\Recomendacion;
@@ -85,6 +85,7 @@ class Perfil extends Model
     {
         return $this->belongsToMany(Idioma::class, 'idioma_perfil', 'id_perfil', 'id_idioma')
             ->using(IdiomaPerfil::class)
+            ->withPivot('id')
             ->as('detalle');
     }
 }

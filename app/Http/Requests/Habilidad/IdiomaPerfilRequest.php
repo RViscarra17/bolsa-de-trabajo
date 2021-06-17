@@ -26,6 +26,10 @@ class IdiomaPerfilRequest extends FormRequest
         return [
             'id_idioma' => 'required|exists:idioma,id',
             'id_perfil' => 'required|exists:perfil,id',
+            //Detalle idioma
+            'detalle' => 'nullable|array',
+            'detalle.*.habilidad' => 'required|exists:habilidad_idioma,id',
+            'detalle.*.nivel' => 'required|exists:nivel_idioma,id',
         ];
     }
 }

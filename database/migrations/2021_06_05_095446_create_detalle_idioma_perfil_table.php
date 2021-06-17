@@ -21,7 +21,7 @@ class CreateDetalleIdiomaPerfilTable extends Migration
 
             $table->foreign('id_hab_idioma')->references('id')->on('habilidad_idioma');
             $table->foreign('id_nivel_idioma')->references('id')->on('nivel_idioma');
-            $table->foreign('id_idioma_perfil')->references('id')->on('perfil')->onDelete('cascade');
+            $table->foreign('id_idioma_perfil')->references('id')->on('idioma_perfil')->onDelete('cascade');
         });
     }
 

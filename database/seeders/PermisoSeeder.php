@@ -576,9 +576,7 @@ class PermisoSeeder extends Seeder
             'name' => 'ver-resultado-examen',
             'descripcion' => 'Permite ver el detalle/resultado de un examen en el sistema',
         ]);
-        //88
 
-        //No se utiliza
         Permiso::create([
             'display_name' => 'Modificar resultado-examen',
             'name' => 'modificar-resultado-examen',

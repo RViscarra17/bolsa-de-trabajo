@@ -28,7 +28,7 @@ class EmpresaSeeder extends Seeder
             'direccion_emp' => '',
             'sitio_web' => '',
             'id_sector' => $sector->id,
-            'id_usuario' => Usuario::first()->id,
+            'id_usuario' => 3,
         ]);
     }
 }

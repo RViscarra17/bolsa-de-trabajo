@@ -15,12 +15,12 @@ class CreateOpcionTable extends Migration
     {
         Schema::create('opcion', function (Blueprint $table) {
             $table->id();
-            $table->string('texto_opción');
+            $table->string('texto_opcion');
             $table->boolean('correcta');
             $table->integer('orden');
             $table->unsignedBigInteger('id_pregunta');
 
-            $table->foreign('id_pregunta')->references('id')->on('pregunta');
+            $table->foreign('id_pregunta')->references('id')->on('pregunta')->onDelete('cascade');
         });
     }
 

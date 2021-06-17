@@ -18,7 +18,7 @@ class Pregunta extends Model
     public $timestamps = false;
 
 
-    public function opcion(): HasMany
+    public function opciones(): HasMany
     {
         return $this->hasMany(Opcion::class, 'id_pregunta');
     }

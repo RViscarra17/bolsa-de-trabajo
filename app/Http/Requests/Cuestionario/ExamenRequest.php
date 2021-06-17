@@ -26,8 +26,18 @@ class ExamenRequest extends FormRequest
     {
         return [
             'titulo_examen' => 'required|string|max:50',
-            'id_empresa' => 'exists:empresa,id',
-            'id_tipo_examen' => 'exists:empresa,id',
+            'id_empresa' => 'required|exists:empresa,id',
+            'id_tipo_examen' => 'required|exists:tipo_examen,id',
+            //Preguntas
+            'preguntas' => 'required|array',
+            'preguntas.*.id_tipo' => 'required|exists:tipo_pregunta,id',
+            'preguntas.*.texto' => 'required|string|max:100',
+            'preguntas.*.puntos' => 'nullable|integer',
+            'preguntas.*.multiple' => 'nullable|boolean',
+            //Opciones
+            'preguntas.*.opciones' => 'required|array',
+            'preguntas.*.opciones.*.texto_opcion' => 'required|string|max:150',
+            'preguntas.*.opciones.*.correcta' => 'nullable|boolean',
         ];
     }
 }

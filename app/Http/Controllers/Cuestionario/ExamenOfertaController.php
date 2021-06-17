@@ -16,8 +16,8 @@ class ExamenOfertaController extends Controller
      */
     public function index()
     {
-        $tipos = ExamenOferta::all()->toArray();
-        return response()->json($tipos);
+        $examens = ExamenOferta::all()->toArray();
+        return response()->json($examens);
     }
 
     /**
@@ -28,44 +28,43 @@ class ExamenOfertaController extends Controller
      */
     public function store(ExamenOfertaRequest $request)
     {
-        $tipo = ExamenOferta::create($request->validated());
-        return response()->json($tipo, 201);
+        $examen = ExamenOferta::create($request->validated());
+        return response()->json($examen, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ExamenOferta  $tipo
+     * @param  \App\Models\ExamenOferta  $examen
      * @return \Illuminate\Http\Response
      */
-    public function show(ExamenOferta $tipo)
+    public function show(ExamenOferta $examen)
     {
-        return response()->json($tipo);
+        return response()->json($examen);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ExamenOferta  $tipo
+     * @param  \App\Models\ExamenOferta  $examen
      * @return \Illuminate\Http\Response
      */
-    public function update(ExamenOfertaRequest $request, ExamenOferta $tipo)
+    public function update(ExamenOfertaRequest $request, ExamenOferta $examen)
     {
-        $tipo->update($request->validated());
-        return response()->json($tipo, 200);
+        $examen->update($request->validated());
+        return response()->json($examen, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ExamenOferta  $tipo
+     * @param  \App\Models\ExamenOferta  $examen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExamenOferta $tipo)
+    public function destroy(ExamenOferta $examen)
     {
-        $tipo->delete();
+        $examen->delete();
         return response()->json(null, 204);
     }
 }
-

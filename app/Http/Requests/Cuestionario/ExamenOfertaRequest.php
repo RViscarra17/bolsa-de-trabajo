@@ -24,16 +24,8 @@ class ExamenOfertaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_exa_ofe' => [
-                'required',
-                'string',
-                'regex:/^[A-zÀ-ú0-9\s]+$/',
-                Rule::unique('examen_oferta')->ignore(
-                    ($this->tipo && strcasecmp($this->tipo->nombre_exa_ofe, $this->nombre_exa_ofe) == 0) ?
-                        $this->tipo->id : null
-                )
-            ],
+            'id_examen' => 'required|exists:examen,id',
+            'id_oferta' => 'required|exists:oferta,id',
         ];
     }
 }
-

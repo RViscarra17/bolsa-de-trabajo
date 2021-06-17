@@ -35,15 +35,15 @@ class OfertaRequest extends FormRequest
             'descripcion_oferta' => 'required|string|max:255',
             'otros_requisitos' => 'required|string|max:500',
             'ubicacion' => 'required|string|max:100',
-            'fecha_inicio' => 'bail|required|date|date_format:d/m/Y|after_or_equal:today',
-            'fecha_fin' => 'nullable|date|date_format:d/m/Y|after:fecha_inicio',
+            'fecha_inicio' => 'bail|required|date_format:d/m/Y|after_or_equal:today',
+            'fecha_fin' => 'bail|nullable|date_format:d/m/Y|after:fecha_inicio',
             'vacantes' => 'required|integer',
             'experiencia' => 'required|integer',
-            'genero' => 'required|string|size:1',
+            'genero' => 'nullable|string|size:1',
             'viajar' => 'nullable|boolean',
             'vehiculo' => 'nullable|boolean',
             'cambio_residencia' => 'nullable|boolean',
-            'id_oferta' => 'required|exists:oferta,id',
+            'id_empresa' => 'required|exists:empresa,id',
             'id_puesto' => 'required|exists:puesto,id',
             'id_ciudad' => 'required|exists:ciudad,id',
             //Array de IDs de las hobilidades y su experiencia (en años)
@@ -56,6 +56,11 @@ class OfertaRequest extends FormRequest
             'titulos.*' => 'distinct|exists:titulo_academico,id',
             'titulos_exp' => 'required_with:titulos|array',
             'titulos_exp.*' => 'nullable|integer',
+            //Salario y edad
+            'sal_minimo' => "nullable|regex:/^\d+(\.\d{1,2})?$/|",
+            'sal_maximo' => "nullable|regex:/^\d+(\.\d{1,2})?$/|gt:sal_minimo",
+            'edad_minima' => "nullable|integer|min:18|max:100",
+            'edad_maxima' => "nullable|integer|gt:edad_minima|max:100",
         ];
     }
 }

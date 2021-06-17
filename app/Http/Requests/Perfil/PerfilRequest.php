@@ -35,7 +35,7 @@ class PerfilRequest extends FormRequest
             'dui' => 'required_without:pasaporte|nullable|string|regex:/^\d{8}-\d$/|size:10',
             'nit' => 'required|string|regex:/^\d{4}-\d{6}-\d{3}-\d$/|size:17',
             'nup' => 'nullable|string|regex:/^\d{12}$/|size:12',
-            'fecha_nacimiento' => 'bail|required|date|date_format:d/m/Y|before:18 years ago',
+            'fecha_nacimiento' => 'bail|required|date_format:d/m/Y|before:18 years ago',
             'pasaporte' => 'required_without:dui|nullable|string|size:9',
             'resumen' => 'nullable|string|max:255',
             'otros_datos' => 'nullable|string|max:500',

@@ -35,6 +35,17 @@ class Oferta extends Model
         $this->attributes['fecha_fin'] = isset($value) ? Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d') : null;
     }
 
+    public function getGeneroStrAttribute()
+    {
+        if (is_null($this->genero)) {
+            return 'Irrelevante';
+        }
+        return [
+            'F' => 'Femenino',
+            'M' => 'Masculino',
+        ][$this->genero];
+    }
+
     //Relaciones
     public function salario(): HasOne
     {

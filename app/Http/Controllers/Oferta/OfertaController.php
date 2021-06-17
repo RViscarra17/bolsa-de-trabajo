@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Oferta;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Oferta\OfertaRequest;
+use App\Http\Resources\OfertaResource;
 use App\Models\Oferta\Oferta;
+use App\Models\Oferta\RangoEdad;
+use App\Models\Oferta\RangoSalario;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OfertaController extends Controller
 {
@@ -16,8 +20,13 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        $ofertas = Oferta::all()->toArray();
-        return response()->json($ofertas);
+        $ofertas = Oferta::all();
+
+        if (!Auth::user()->es_admin) {
+            $ofertas = $ofertas->where('id_empresa', '=', Auth::user()->empresa->id);
+        }
+
+        return response()->json(OfertaResource::collection($ofertas));
     }
 
     /**
@@ -28,34 +37,54 @@ class OfertaController extends Controller
      */
     public function store(OfertaRequest $request)
     {
-        $oferta = Oferta::create(
-            $request->except(
-                'habilidades',
-                'hab_exp',
-                'titulos',
-                'titulos_exp'
-            )
-        );
+        $oferta = DB::transaction(function () use ($request) {
+            $oferta = Oferta::create(
+                $request->except(
+                    'habilidades',
+                    'hab_exp',
+                    'titulos',
+                    'titulos_exp'
+                )
+            );
 
-        if ($request->input('habilidades')) {
-            $exp = $request->input('hab_exp');
-            foreach ($request->input('habilidades') as $i => $id) {
-                $oferta->habilidades()->attach($id, [
-                    'experiencia' => $exp[$i],
+            if ($request->has('sal_minimo')) {
+                RangoSalario::create([
+                    'id_oferta' => $oferta->id,
+                    'minimo' => $request->input('sal_minimo'),
+                    'maximo' => $request->input('sal_maximo'),
                 ]);
             }
-        }
 
-        if ($request->input('titulos')) {
-            $exp = $request->input('titulos_exp');
-            foreach ($request->input('titulos') as $pos => $id) {
-                $oferta->titulos()->attach($id, [
-                    'nivel_minimo' => $exp[$pos],
+            if ($request->has('edad_minima')) {
+                RangoEdad::create([
+                    'id_oferta' => $oferta->id,
+                    'edad_minima' => $request->input('edad_minima'),
+                    'edad_maxima' => $request->input('edad_maxima') ?? null,
                 ]);
             }
-        }
 
-        return response()->json($oferta->load('habilidades', 'titulos', 'puesto'), 201);
+            if ($request->input('habilidades')) {
+                $exp = $request->input('hab_exp');
+                foreach ($request->input('habilidades') as $i => $id) {
+                    $oferta->habilidades()->attach($id, [
+                        'experiencia' => $exp[$i],
+                    ]);
+                }
+            }
+
+            if ($request->input('titulos')) {
+                $exp = $request->input('titulos_exp');
+                foreach ($request->input('titulos') as $pos => $id) {
+                    $oferta->titulos()->attach($id, [
+                        'nivel_minimo' => $exp[$pos],
+                    ]);
+                }
+            }
+
+            return $oferta;
+        });
+        //$oferta->load('habilidades', 'titulos', 'puesto', 'salario', 'edad')
+        return response()->json(new OfertaResource($oferta), 201);
     }
 
     /**
@@ -66,7 +95,7 @@ class OfertaController extends Controller
      */
     public function show(Oferta $oferta)
     {
-        return response()->json($oferta->load('habilidades', 'titulos', 'puesto'));
+        return response()->json($oferta->load('habilidades', 'titulos', 'puesto', 'salario', 'edad'));
     }
 
     /**
@@ -78,38 +107,60 @@ class OfertaController extends Controller
      */
     public function update(OfertaRequest $request, Oferta $oferta)
     {
-        $oferta->update(
-            $request->except(
-                'habilidades',
-                'hab_exp',
-                'titulos',
-                'titulos_exp'
-            )
-        );
+        DB::transaction(function () use ($request, $oferta) {
+            $oferta->update(
+                $request->except(
+                    'habilidades',
+                    'hab_exp',
+                    'titulos',
+                    'titulos_exp'
+                )
+            );
 
-        $oferta->habilidades()->detach();
-
-        if ($request->input('habilidades')) {
-            $exp = $request->input('hab_exp');
-            foreach ($request->input('habilidades') as $pos => $id) {
-                $oferta->habilidades()->attach($id, [
-                    'experiencia' => $exp[$pos],
-                ]);
+            if ($request->has('sal_minimo')) {
+                RangoSalario::updateOrCreate(
+                    ['id_oferta' => $oferta->id],
+                    [
+                        'minimo' => $request->input('sal_minimo'),
+                        'maximo' => $request->input('sal_maximo') ?? null,
+                    ]
+                );
             }
-        }
 
-        $oferta->titulos()->detach();
-
-        if ($request->input('titulos')) {
-            $exp = $request->input('titulos_exp');
-            foreach ($request->input('titulos') as $pos => $id) {
-                $oferta->titulos()->attach($id, [
-                    'nivel_minimo' => $exp[$pos],
-                ]);
+            if ($request->has('edad_minima')) {
+                RangoEdad::updateOrCreate(
+                    ['id_oferta' => $oferta->id],
+                    [
+                        'edad_minima' => $request->input('edad_minima'),
+                        'edad_maxima' => $request->input('edad_maxima') ?? null,
+                    ]
+                );
             }
-        }
 
-        return response()->json($oferta->load('habilidades', 'titulos', 'puesto'), 200);
+            $oferta->habilidades()->detach();
+
+            if ($request->input('habilidades')) {
+                $exp = $request->input('hab_exp');
+                foreach ($request->input('habilidades') as $pos => $id) {
+                    $oferta->habilidades()->attach($id, [
+                        'experiencia' => $exp[$pos],
+                    ]);
+                }
+            }
+
+            $oferta->titulos()->detach();
+
+            if ($request->input('titulos')) {
+                $exp = $request->input('titulos_exp');
+                foreach ($request->input('titulos') as $pos => $id) {
+                    $oferta->titulos()->attach($id, [
+                        'nivel_minimo' => $exp[$pos],
+                    ]);
+                }
+            }
+        });
+
+        return response()->json(new OfertaResource($oferta), 200);
     }
 
     /**

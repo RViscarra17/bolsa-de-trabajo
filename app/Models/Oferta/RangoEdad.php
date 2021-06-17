@@ -14,6 +14,9 @@ class RangoEdad extends Model
 
     protected $table = 'rango_edad';
 
+    public $timestamps = false;
+
+
     public function oferta(): BelongsTo
     {
         return $this->belongsTo(Oferta::class, 'id_oferta');

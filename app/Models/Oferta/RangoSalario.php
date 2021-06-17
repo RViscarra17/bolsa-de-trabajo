@@ -14,6 +14,9 @@ class RangoSalario extends Model
 
     protected $table = 'rango_salario';
 
+    public $timestamps = false;
+
+
     protected $casts = [
         'minimo' => 'decimal:2',
         'maximo' => 'decimal:2',

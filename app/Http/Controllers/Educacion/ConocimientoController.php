@@ -6,6 +6,7 @@ use App\Models\Educacion\Conocimiento;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Educacion\ConocimientoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ConocimientoController extends Controller
 {
@@ -16,9 +17,21 @@ class ConocimientoController extends Controller
      */
     public function index()
     {
-        //
-        $conocimientos = Conocimiento::with('tipo', 'nivel')->get()->toArray();
-        return response()->json($conocimientos);
+        if (!Auth::user()->es_admin) {
+            $conocimientos = Conocimiento::with('tipo', 'nivel')
+                ->where('id_perfil', '=', Auth::user()->perfil->id)
+                ->get();
+        } else {
+            $conocimientos = Conocimiento::with('tipo', 'nivel')->get();
+        }
+
+        if ($conocimientos->empty()) {
+            return response()->json(array(
+                'message' => 'No hay conocimientos registrados'
+            ), 422);
+        }
+
+        return response()->json($conocimientos->toArray());
     }
 
     /**

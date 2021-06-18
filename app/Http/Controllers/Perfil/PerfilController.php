@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Perfil;
 
 use App\Models\Perfil\Perfil;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Perfil\PerfilRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PerfilController extends Controller
 {
@@ -16,8 +16,21 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $perfiles = Perfil::all()->toArray();
-        return response()->json($perfiles);
+        if (!Auth::user()->es_admin) {
+            $perfiles = Perfil::with('habilidades')
+                ->where('id_perfil', '=', Auth::user()->perfil->id)
+                ->get();
+        } else {
+            $perfiles = Perfil::with('habilidades')->get();
+        }
+
+        if ($perfiles->empty()) {
+            return response()->json(array(
+                'message' => 'No hay perfiles registrados'
+            ), 422);
+        }
+
+        return response()->json($perfiles->toArray());
     }
 
     /**

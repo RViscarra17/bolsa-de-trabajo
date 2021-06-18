@@ -20,10 +20,16 @@ class OfertaController extends Controller
      */
     public function index()
     {
-        $ofertas = Oferta::all();
-
         if (!Auth::user()->es_admin) {
-            $ofertas = $ofertas->where('id_empresa', '=', Auth::user()->empresa->id);
+            $ofertas = Oferta::where('id_empresa', '=', Auth::user()->empresa->id)->get();
+        } else {
+            $ofertas = Oferta::all();
+        }
+
+        if ($ofertas->empty()) {
+            return response()->json(array(
+                'message' => 'No hay ofertas registradas'
+            ), 422);
         }
 
         return response()->json(OfertaResource::collection($ofertas));

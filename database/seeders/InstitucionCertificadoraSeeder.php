@@ -20,5 +20,6 @@ class InstitucionCertificadoraSeeder extends Seeder
         InstitucionCertificadora::create(['nombre_institucion_cert' => 'Oracle']);
         InstitucionCertificadora::create(['nombre_institucion_cert' => 'Microsoft']);
         InstitucionCertificadora::create(['nombre_institucion_cert' => 'Adobe']);
+        InstitucionCertificadora::create(['nombre_institucion_cert' => 'Otra']);
     }
 }

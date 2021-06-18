@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Otro;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Otro\RecomendacionRequest;
 use App\Models\Otro\Recomendacion;
+use Illuminate\Support\Facades\Auth;
 
 class RecomendacionController extends Controller
 {
@@ -16,9 +17,19 @@ class RecomendacionController extends Controller
      */
     public function index()
     {
-        //
-        $recomendaciones = Recomendacion::all()->toArray();
-        return response()->json($recomendaciones);
+        if (!Auth::user()->es_admin) {
+            $recomendaciones = Recomendacion::where('id_perfil', '=', Auth::user()->perfil->id)->get();
+        } else {
+            $recomendaciones = Recomendacion::all();
+        }
+
+        if ($recomendaciones->empty()) {
+            return response()->json(array(
+                'message' => 'No hay recomendaciones registradas'
+            ), 422);
+        }
+
+        return response()->json($recomendaciones->toArray());
     }
 
     /**

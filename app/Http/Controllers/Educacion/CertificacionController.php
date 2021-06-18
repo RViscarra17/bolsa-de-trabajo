@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Educacion\Certificacion;
 use Illuminate\Http\Request;
 use App\Http\Requests\Educacion\CertificacionRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CertificacionController extends Controller
 {
@@ -16,9 +17,21 @@ class CertificacionController extends Controller
      */
     public function index()
     {
-        //
-        $certificaciones = Certificacion::with('tipo')->get()->toArray();
-        return response()->json($certificaciones);
+        if (!Auth::user()->es_admin) {
+            $certificaciones = Certificacion::with('tipo')
+                ->where('id_perfil', '=', Auth::user()->perfil->id)
+                ->get();
+        } else {
+            $certificaciones = Certificacion::with('tipo')->get()->toArray();
+        }
+
+        if ($certificaciones->empty()) {
+            return response()->json(array(
+                'message' => 'No hay certificaciones registradas'
+            ), 422);
+        }
+
+        return response()->json($certificaciones->toArray());
     }
 
     /**
@@ -30,9 +43,8 @@ class CertificacionController extends Controller
     public function store(CertificacionRequest $request)
     {
         //
-        $certificacion=Certificacion::create($request->validated());
-        return response()->json($certificacion->load('tipo'),201);
-
+        $certificacion = Certificacion::create($request->validated());
+        return response()->json($certificacion->load('tipo'), 201);
     }
 
     /**
@@ -58,7 +70,7 @@ class CertificacionController extends Controller
     {
         //
         $certificacion->update($request->validated());
-        return response()->jason($certificacion->load('tipo'),200);
+        return response()->jason($certificacion->load('tipo'), 200);
     }
 
     /**

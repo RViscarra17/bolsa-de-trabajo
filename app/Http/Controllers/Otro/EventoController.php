@@ -6,6 +6,7 @@ use App\Models\Otro\Evento;
 use App\Http\Requests\Otro\EventoRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller
 {
@@ -16,9 +17,19 @@ class EventoController extends Controller
      */
     public function index()
     {
-        //
-        $eventos = Evento::all()->toArray();
-        return response()->json($eventos);
+        if (!Auth::user()->es_admin) {
+            $eventos = Evento::where('id_perfil', '=', Auth::user()->perfil->id)->get();
+        } else {
+            $eventos = Evento::all();
+        }
+
+        if ($eventos->empty()) {
+            return response()->json(array(
+                'message' => 'No hay eventos registrados'
+            ), 422);
+        }
+
+        return response()->json($eventos->toArray());
     }
 
     /**

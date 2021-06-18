@@ -6,6 +6,7 @@ use App\Models\Usuario\Telefono;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\TelefonoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TelefonoController extends Controller
 {
@@ -16,8 +17,20 @@ class TelefonoController extends Controller
      */
     public function index()
     {
-        $telefonos = Telefono::with('tipo')->get()->toArray();
-        return response()->json($telefonos);
+        if (!Auth::user()->es_admin) {
+            $telefonos = Telefono::with('tipo')
+                ->where('id_usuario', '=', Auth::user()->id)
+                ->get();
+        } else {
+            $telefonos = Telefono::all();
+        }
+
+        if ($telefonos->empty()) {
+            return response()->json(array(
+                'message' => 'No hay telefonos registradas'
+            ), 422);
+        }
+        return response()->json($telefonos->toArray());
     }
 
     /**
@@ -40,7 +53,7 @@ class TelefonoController extends Controller
      */
     public function show(Telefono $telefono)
     {
-        return response()->json($telefono);
+        return response()->json($telefono->load('tipo'));
     }
 
     /**

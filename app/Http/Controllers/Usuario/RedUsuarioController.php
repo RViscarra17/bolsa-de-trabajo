@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\RedUsuarioRequest;
 use App\Models\Usuario\RedSocial;
 use App\Models\Usuario\Usuario;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Redirect;
 
 class RedUsuarioController extends Controller
 {

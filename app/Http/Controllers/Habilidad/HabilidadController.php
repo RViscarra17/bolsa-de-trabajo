@@ -31,8 +31,8 @@ class HabilidadController extends Controller
     public function store(HabilidadRequest $request)
     {
         //
-        $habilidad=Habilidad::create($request->validated());
-        return response()->json($habilidad->load('categoria'),201);
+        $habilidad = Habilidad::create($request->validated());
+        return response()->json($habilidad->load('categoria'), 201);
     }
 
     /**
@@ -58,7 +58,7 @@ class HabilidadController extends Controller
     {
         //
         $habilidad->update($request->validated());
-        return response()->json($habilidad->load('categoria'),200);
+        return response()->json($habilidad->load('categoria'), 200);
     }
 
     /**
@@ -71,6 +71,6 @@ class HabilidadController extends Controller
     {
         //
         $habilidad->delete();
-        return response()->json(null,204);
+        return response()->json(null, 204);
     }
 }

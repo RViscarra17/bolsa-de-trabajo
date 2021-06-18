@@ -6,6 +6,7 @@ use App\Models\Otro\Logro;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Otro\LogroRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LogroController extends Controller
 {
@@ -16,9 +17,19 @@ class LogroController extends Controller
      */
     public function index()
     {
-        //
-        $logros = Logro::with('tipo')->get()->toArray();
-        return response()->json($logros);
+        if (!Auth::user()->es_admin) {
+            $logros = Logro::with('tipo')->where('id_perfil', '=', Auth::user()->perfil->id)->get();
+        } else {
+            $logros = Logro::with('tipo')->get();
+        }
+
+        if ($logros->empty()) {
+            return response()->json(array(
+                'message' => 'No hay logros registrados'
+            ), 422);
+        }
+
+        return response()->json($logros->toArray());
     }
 
     /**
@@ -57,7 +68,7 @@ class LogroController extends Controller
     {
         //
         $logro->update($request->validated());
-        return response()->jason($logro->load('tipo'),200);
+        return response()->json($logro->load('tipo'), 200);
     }
 
     /**

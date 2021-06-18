@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             TipoUsuarioSeeder::class,
             RedSocialSeeder::class,
             PaisSeeder::class,
+            EstadoSeeder::class,
             TipoLogroSeeder::class,
             TipoNivelSeeder::class,
             CategoriaPuestoSeeder::class,

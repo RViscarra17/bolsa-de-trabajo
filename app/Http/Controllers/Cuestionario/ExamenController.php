@@ -9,6 +9,7 @@ use App\Http\Requests\Cuestionario\ExamenRequest;
 use App\Models\Cuestionario\Opcion;
 use App\Models\Cuestionario\Pregunta;
 use App\Models\Cuestionario\Respuesta;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ExamenController extends Controller
@@ -20,8 +21,13 @@ class ExamenController extends Controller
      */
     public function index()
     {
-        $examens = Examen::all()->toArray();
-        return response()->json($examens);
+        $examenes = Examen::all();
+
+        if (!Auth::user()->es_admin) {
+            $examenes = $examenes->where('id_empresa', '=', Auth::user()->empresa->id);
+        }
+
+        return response()->json($examenes->toArray());
     }
 
     /**

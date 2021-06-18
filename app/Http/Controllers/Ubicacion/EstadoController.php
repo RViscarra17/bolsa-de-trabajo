@@ -40,7 +40,7 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-        return response()->json($estado);
+        return response()->json($estado->load('cuidades'));
     }
 
     /**

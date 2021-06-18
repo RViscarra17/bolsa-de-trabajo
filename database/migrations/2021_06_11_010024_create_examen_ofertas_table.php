@@ -15,8 +15,10 @@ class CreateExamenOfertasTable extends Migration
     {
         Schema::create('examen_oferta', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_examen')->unique();
-            $table->unsignedBigInteger('id_oferta')->unique();
+            $table->unsignedBigInteger('id_examen');
+            $table->unsignedBigInteger('id_oferta');
+
+            $table->unique(['id_examen', 'id_oferta']);
 
             $table->foreign('id_examen')->references('id')->on('examen')->onDelete('cascade');
             $table->foreign('id_oferta')->references('id')->on('oferta')->onDelete('cascade');

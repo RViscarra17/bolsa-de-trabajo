@@ -40,7 +40,7 @@ class PaisController extends Controller
      */
     public function show(Pais $pais)
     {
-        return response()->json($pais);
+        return response()->json($pais->load('estados'));
     }
 
     /**

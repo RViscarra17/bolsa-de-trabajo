@@ -48,7 +48,6 @@ class CreateCantidadUsuarioPorTipoView extends Migration
     private function dropView(): string
     {
         return <<<SQL
-
             DROP VIEW IF EXISTS `cantidad_usuario_por_tipo`;
             SQL;
     }

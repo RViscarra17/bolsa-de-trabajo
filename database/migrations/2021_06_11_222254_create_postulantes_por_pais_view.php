@@ -48,7 +48,6 @@ class CreatePostulantesPorPaisView extends Migration
     private function dropView(): string
     {
         return <<<SQL
-
             DROP VIEW IF EXISTS `postulantes_por_pais`;
             SQL;
     }

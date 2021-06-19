@@ -34,7 +34,6 @@ class AplicacionRequest extends FormRequest
             'id_usuario' => 'required|exists:usuario,id',
             'id_oferta' => 'required|exists:oferta,id',
             'id_estado_ap' => 'nullable|exists:estado_aplicacion,id',
-            'fecha_ap' => '',
         ];
     }
 }

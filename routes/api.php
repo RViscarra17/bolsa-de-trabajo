@@ -64,11 +64,13 @@ Route::group(['middleware' => ['cors']], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
 
-    /*Admin*/
+
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::post('logout', [AuthController::class, 'logout']);
+
+        /*Admin*/
 
         Route::group(['middleware' => 'is.admin', 'prefix' => 'admin'], function () {
 

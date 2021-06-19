@@ -21,6 +21,8 @@ class UsuarioSeeder extends Seeder
             'password' =>  bcrypt('admin123'),
             'es_admin' => true,
             'id_tipo_usuario' => 1,
+            'id_pais' => 1,
+            'activo' => 1,
         ])->syncRoles(1);
 
         Usuario::create([
@@ -29,6 +31,8 @@ class UsuarioSeeder extends Seeder
             'correo' => 'postulante@example.com',
             'password' =>  bcrypt('password123'),
             'id_tipo_usuario' => 2,
+            'id_pais' => 1,
+            'activo' => 1,
         ])->syncRoles(2);
 
         Usuario::create([
@@ -37,6 +41,8 @@ class UsuarioSeeder extends Seeder
             'correo' => 'empresa@example.com',
             'password' =>  bcrypt('password123'),
             'id_tipo_usuario' => 3,
+            'id_pais' => 1,
+            'activo' => 1,
         ])->syncRoles(3);
     }
 }

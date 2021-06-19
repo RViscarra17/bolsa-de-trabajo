@@ -18,8 +18,7 @@ class CreateAplicaATable extends Migration
             $table->unsignedBigInteger('id_oferta');
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_estado_ap')->nullable();
-            $table->date('fecha_ap');
-            $table->timestamps();
+            $table->date('fecha_ap')->nullable();
 
             $table->foreign('id_oferta')->references('id')->on('oferta')->onDelete('cascade');
             $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');

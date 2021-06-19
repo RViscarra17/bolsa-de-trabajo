@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Oferta\EstadoAplicacion;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             SectorSeeder::class,
             UsuarioSeeder::class,
             EmpresaSeeder::class,
+            EstadoAplicacion::class,
         ]);
     }
 }

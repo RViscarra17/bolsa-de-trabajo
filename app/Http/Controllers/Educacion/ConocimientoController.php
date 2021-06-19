@@ -25,7 +25,7 @@ class ConocimientoController extends Controller
             $conocimientos = Conocimiento::with('tipo', 'nivel')->get();
         }
 
-        if ($conocimientos->empty()) {
+        if (!$conocimientos) {
             return response()->json(array(
                 'message' => 'No hay conocimientos registrados'
             ), 422);

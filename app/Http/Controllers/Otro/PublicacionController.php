@@ -23,7 +23,7 @@ class PublicacionController extends Controller
             $publicaciones = Publicacion::all();
         }
 
-        if ($publicaciones->empty()) {
+        if (!$publicaciones) {
             return response()->json(array(
                 'message' => 'No hay publicaciones registradas'
             ), 422);

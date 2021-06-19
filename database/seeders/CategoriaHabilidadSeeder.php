@@ -28,5 +28,14 @@ class CategoriaHabilidadSeeder extends Seeder
             'nombre_habilidad' => 'Frontend',
             'id_cat_habilidad' => $cat->id,
         ]);
+
+        CategoriaHabilidad::create([
+            'nombre_cat_habilidad' => '',
+        ]);
+
+        Habilidad::create([
+            'nombre_habilidad' => '',
+            'id_cat_habilidad' => 2,
+        ]);
     }
 }

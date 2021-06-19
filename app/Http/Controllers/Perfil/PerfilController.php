@@ -18,13 +18,13 @@ class PerfilController extends Controller
     {
         if (!Auth::user()->es_admin) {
             $perfiles = Perfil::with('habilidades')
-                ->where('id_perfil', '=', Auth::user()->perfil->id)
+                ->where('id', '=', Auth::user()->perfil->id)
                 ->get();
         } else {
             $perfiles = Perfil::with('habilidades')->get();
         }
 
-        if ($perfiles->empty()) {
+        if (!$perfiles) {
             return response()->json(array(
                 'message' => 'No hay perfiles registrados'
             ), 422);
@@ -41,6 +41,10 @@ class PerfilController extends Controller
      */
     public function store(PerfilRequest $request)
     {
+        if (Auth::user()->perfil) {
+            return response()->json(array('message' => 'El usuario ya ha agregado perfil a su cuenta'), 409);
+        }
+
         $perfil = Perfil::create($request->except(
             'habilidades',
             'hab_exp'

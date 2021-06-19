@@ -17,11 +17,11 @@ class Cors
     public function handle(Request $request, Closure $next)
     {
         return $next($request)
-            ->header("Access-Control-Allow-Origin", "*")
+            ->header("Access-Control-Allow-Origin", "https://trabajosbad115.netlify.app/")
             ->header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
             ->header(
                 "Access-Control-Allow-Headers",
-                "Content-Type, Accept, Authorization, X-Requested-With, Application"
+                "X-Requested-With, Content-Type, X-Token-Auth, Authorization"
             );
     }
 }

@@ -23,7 +23,7 @@ class RecomendacionController extends Controller
             $recomendaciones = Recomendacion::all();
         }
 
-        if ($recomendaciones->empty()) {
+        if (!$recomendaciones) {
             return response()->json(array(
                 'message' => 'No hay recomendaciones registradas'
             ), 422);

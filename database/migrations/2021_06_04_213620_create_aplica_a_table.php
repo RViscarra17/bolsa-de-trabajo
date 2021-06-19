@@ -17,7 +17,7 @@ class CreateAplicaATable extends Migration
             $table->primary(['id_oferta', 'id_usuario']);
             $table->unsignedBigInteger('id_oferta');
             $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_estado_ap');
+            $table->unsignedBigInteger('id_estado_ap')->nullable();
             $table->date('fecha_ap');
             $table->timestamps();
 

@@ -25,7 +25,7 @@ class TelefonoController extends Controller
             $telefonos = Telefono::all();
         }
 
-        if ($telefonos->empty()) {
+        if (!$telefonos) {
             return response()->json(array(
                 'message' => 'No hay telefonos registradas'
             ), 422);

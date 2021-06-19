@@ -61,7 +61,7 @@ class IdiomaPerfilController extends Controller
         });
 
 
-        return response()->json(new IdiomaPerfilResource($perfil->idiomas()->find($id_idioma)), 422);
+        return response()->json(new IdiomaPerfilResource($perfil->idiomas()->find($id_idioma)), 201);
     }
 
     /**

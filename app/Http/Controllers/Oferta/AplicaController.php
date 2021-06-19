@@ -17,8 +17,8 @@ class AplicaController extends Controller
      */
     public function index()
     {
-        $ofertas =  Oferta::with('usuarios.perfiles')->toArray();
-        return response()->json($ofertas);
+        // $ofertas =  Oferta::with('usuarios.perfiles')->toArray();
+        // return response()->json($ofertas);
     }
 
     /**

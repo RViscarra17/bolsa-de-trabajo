@@ -23,7 +23,7 @@ class DireccionController extends Controller
             $direcciones = Direccion::all();
         }
 
-        if ($direcciones->empty()) {
+        if (!$direcciones) {
             return response()->json(array(
                 'message' => 'No hay direcciones registradas'
             ), 422);

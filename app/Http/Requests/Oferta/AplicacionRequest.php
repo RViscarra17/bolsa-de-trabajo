@@ -31,8 +31,10 @@ class AplicacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_perfil' => 'required|exists:perfil,id',
+            'id_usuario' => 'required|exists:usuario,id',
             'id_oferta' => 'required|exists:oferta,id',
+            'id_estado_ap' => 'nullable|exists:estado_aplicacion,id',
+            'fecha_ap' => '',
         ];
     }
 }

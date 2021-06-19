@@ -25,7 +25,7 @@ class CertificacionController extends Controller
             $certificaciones = Certificacion::with('tipo')->get()->toArray();
         }
 
-        if ($certificaciones->empty()) {
+        if (!$certificaciones) {
             return response()->json(array(
                 'message' => 'No hay certificaciones registradas'
             ), 422);

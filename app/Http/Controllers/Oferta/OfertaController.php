@@ -20,13 +20,14 @@ class OfertaController extends Controller
      */
     public function index()
     {
+        $ofertas = null;
         if (!Auth::user()->es_admin) {
-            $ofertas = Oferta::where('id_empresa', '=', Auth::user()->empresa->id)->get();
+            $ofertas = Oferta::where('id_empresa', Auth::user()->empresa->id)->get();
         } else {
             $ofertas = Oferta::all();
         }
 
-        if ($ofertas->empty()) {
+        if (!$ofertas) {
             return response()->json(array(
                 'message' => 'No hay ofertas registradas'
             ), 422);

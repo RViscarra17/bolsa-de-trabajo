@@ -23,7 +23,7 @@ class EventoController extends Controller
             $eventos = Evento::all();
         }
 
-        if ($eventos->empty()) {
+        if (!$eventos) {
             return response()->json(array(
                 'message' => 'No hay eventos registrados'
             ), 422);

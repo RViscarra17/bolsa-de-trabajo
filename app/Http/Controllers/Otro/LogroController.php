@@ -23,7 +23,7 @@ class LogroController extends Controller
             $logros = Logro::with('tipo')->get();
         }
 
-        if ($logros->empty()) {
+        if (!$logros) {
             return response()->json(array(
                 'message' => 'No hay logros registrados'
             ), 422);

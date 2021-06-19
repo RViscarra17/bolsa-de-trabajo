@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             SectorSeeder::class,
             UsuarioSeeder::class,
             EmpresaSeeder::class,
-            EstadoAplicacion::class,
+            EstadoAplicacionSeeder::class,
         ]);
     }
 }

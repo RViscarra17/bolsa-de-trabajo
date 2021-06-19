@@ -59,26 +59,6 @@ class CategoriaPuestoSeeder extends Seeder
 
         CategoriaPuesto::create(['nombre_cat_puesto' => 'Medicina']);
 
-        Puesto::create([
-            'nombre_puesto' => '',
-            'id_cat_puesto' => 2,
-        ]);
-
-        Puesto::create([
-            'nombre_puesto' => '',
-            'id_cat_puesto' => 2,
-        ]);
-
-        Puesto::create([
-            'nombre_puesto' => '',
-            'id_cat_puesto' => 2,
-        ]);
-
-        Puesto::create([
-            'nombre_puesto' => '',
-            'id_cat_puesto' => 2,
-        ]);
-
         CategoriaPuesto::create(['nombre_cat_puesto' => 'Compras y Logística']);
 
         Puesto::create([

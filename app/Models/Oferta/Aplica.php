@@ -10,6 +10,8 @@ class Aplica extends Pivot
 {
     protected $table = 'aplica_a';
 
+    public $timestamps = false;
+
     public function setFechaApAttribute($value)
     {
         $this->attributes['fecha_ap'] = isset($value) ? Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d') : null;

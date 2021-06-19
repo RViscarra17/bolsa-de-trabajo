@@ -72,7 +72,7 @@ class IdiomaPerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        return response()->json(IdiomaPerfilResource::collection($perfil->idiomas), 422);
+        return response()->json(IdiomaPerfilResource::collection($perfil->idiomas), 200);
     }
 
     /**
@@ -100,7 +100,7 @@ class IdiomaPerfilController extends Controller
                 }
             });
         }
-        return response()->json(new IdiomaPerfilResource($perfil->idiomas()->find($id_idioma)), 422);
+        return response()->json(new IdiomaPerfilResource($perfil->idiomas()->find($id_idioma)), 200);
     }
 
     /**
